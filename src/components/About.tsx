@@ -30,10 +30,10 @@ export default function About() {
             <div className="grid md:grid-cols-2 gap-12 items-start">
               <div>
                 <p className="text-slate-300 text-xl leading-relaxed mb-6 font-semibold">
-                  Solution Studio is a premier software engineering agency delivering web, mobile, and custom software solutions for enterprises and startups.
+                  Solution Studio is a premier software engineering agency delivering web, mobile, and custom software solutions for enterprises and startups worldwide.
                 </p>
                 <p className="text-slate-400 text-lg leading-relaxed">
-                  We build scalable, high-performance applications with clean, maintainable code and intuitive user experiences. Every project is crafted to meet enterprise standards with fully responsive designs, optimized performance, and robust security protocols.
+                  We craft scalable, high-performance applications built on clean architecture and intuitive design. Every product we ship meets enterprise-grade standards — fully responsive, performance-optimized, and security-hardened from day one.
                 </p>
               </div>
 
@@ -99,7 +99,7 @@ export default function About() {
                       Our Approach
                     </h3>
                     <p className="text-slate-400 text-sm leading-relaxed">
-                      We combine modern tech stacks, agile methodologies, and scalable architectures to deliver solutions that drive growth, improve efficiency, and enhance user experience.
+                      We combine cutting-edge tech stacks, agile methodologies, and scalable system architectures to deliver products that drive growth, reduce operational friction, and elevate user experience.
                     </p>
                   </div>
                 </div>

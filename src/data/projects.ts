@@ -127,10 +127,84 @@ export const projects: Project[] = [
     featured: true
   },
   {
+    id: "malamal",
+    title: "MalaMal",
+    description: "A Flutter-based B2B wholesale mobile application built with Supabase backend for enterprise transactions and real-time operations.",
+    fullDescription: "MalaMal is a comprehensive mobile application designed to streamline B2B wholesale transactions and business operations. The app solves the critical problem of inefficient order management and supplier-buyer communication by providing a centralized platform with real-time data synchronization. It's valuable for wholesale distributors and retailers seeking to modernize their transaction processes, reduce manual paperwork, and improve operational efficiency through a unified digital platform.",
+    image: "/projects/MalaMal.jpeg",
+    github: "#",
+    demo: "#",
+    tags: ["Flutter", "Dart", "Supabase", "TypeScript", "Firebase", "Edge Functions", "Realtime Database", "C++", "Swift"],
+    features: [
+      "Real-time order management system",
+      "User authentication and role-based access control",
+      "Database-level security with Row Level Security (RLS) policies",
+      "Edge Functions for serverless backend operations",
+      "Storage bucket management with security policies",
+      "Real-time data synchronization across connected clients",
+      "Webhook integration for event-driven workflows",
+      "Multi-role user system with custom database types"
+    ],
+    challenges: [
+      "Implementing complex Row Level Security policies for multi-tenant B2B operations",
+      "Designing real-time synchronization architecture with Supabase Realtime",
+      "Managing database schema migrations across multiple environments",
+      "Integrating Edge Functions for backend business logic",
+      "Securing sensitive B2B transaction data with encryption and access controls"
+    ],
+    benefits: [
+      "Streamlined wholesale order processing and management",
+      "Real-time visibility into inventory and transactions",
+      "Enhanced security through role-based access and RLS policies",
+      "Scalable architecture using serverless Edge Functions",
+      "Improved collaboration between suppliers and buyers"
+    ],
+    hasImage: true,
+    demoStatus: "private",
+    codeStatus: "private",
+    featured: true
+  },
+  {
+    id: "itm-connect",
+    title: "ITM Connect",
+    description: "A Flutter-based platform centralizing ITM department information, offering students and admins easy access to routines, notices, contacts, and feedback.",
+    fullDescription: "ITM Connect is a Flutter application that consolidates ITM department data into a single hub. It streamlines access to class routines, notices, teacher directories, and feedback channels, helping institutions enhance student engagement, simplify administration, and provide seamless mobile access to critical information.",
+    image: "/projects/ITM_Connect.jpeg",
+    github: "#",
+    demo: "#",
+    tags: ["Flutter", "Dart", "JavaScript", "Firebase", "C++", "CMake", "HTML"],
+    features: [
+      "Animated landing screen with smooth transitions",
+      "Dynamic home screen with bottom navigation",
+      "Class routine management",
+      "Notice board for announcements",
+      "Teacher directory and contact info",
+      "Feedback and contact submission",
+      "Admin portal with role-based access",
+      "Multi-screen navigation system"
+    ],
+    challenges: [
+      "Designing intuitive multi-feature navigation",
+      "Implementing animations and smooth transitions",
+      "Structuring scalable code and file organization",
+      "Integrating backend feedback and role-based access"
+    ],
+    benefits: [
+      "Centralized institutional information",
+      "Enhanced student engagement via notifications",
+      "Streamlined student-admin communication",
+      "Quick access to schedules and teacher contacts",
+      "Reduced reliance on manual info distribution"
+    ],
+    hasImage: true,
+    demoStatus: "private",
+    codeStatus: "private",
+    featured: true
+  },
+  {
     id: "stc-360",
     title: "STC 360",
     description: "Online education platform designed to provide students with access to online classes, courses, and resources.",
-
     fullDescription: "STC360 is a complete digital learning solution designed to provide students with flexible, accessible, and centralized access to education. It modernizes traditional learning systems by providing a structured environment for course enrollment, live/recorded classes, automated quizzes, and certification, connecting students and administrators through a single efficient system.",
     image: "/projects/STC360.png",
     github: "#",

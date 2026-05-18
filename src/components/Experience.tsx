@@ -10,9 +10,8 @@ export default function Experience() {
       subtitle: "Enterprise websites, portals & applications",
       period: "Web",
       achievements: [
-        "We build enterprise-grade websites, e-commerce portals, CMS-powered platforms, and interactive web applications.",
-        "Engineered with Next.js, React, Tailwind CSS, and TypeScript for fluid, lightning-fast rendering.",
-        "Highly optimized for speed, responsive design on all devices, search engine optimization (SEO), and conversion."
+        "Enterprise websites, portals & web applications engineered with Next.js, React, and TypeScript.",
+        "Built for speed, SEO, and conversion — responsive across every device."
       ]
     },
     {
@@ -20,9 +19,8 @@ export default function Experience() {
       subtitle: "Cross-platform mobile apps for iOS and Android",
       period: "Mobile",
       achievements: [
-        "We engineer top-tier cross-platform mobile applications using Flutter & Dart.",
-        "High-performance native execution, smooth 60fps animations, and rich custom UI/UX experiences.",
-        "Unified codebase design ensuring faster development velocity, easier maintenance, and dual store deployments."
+        "Cross-platform iOS & Android apps built with Flutter & Dart.",
+        "Native-level performance, smooth animations, and a unified codebase for faster delivery and lower maintenance cost."
       ]
     },
     {
@@ -30,9 +28,8 @@ export default function Experience() {
       subtitle: "Tailored ERP, CRM & operations software",
       period: "Systems",
       achievements: [
-        "Custom internal business systems designed precisely around your company's processes and operational rules.",
-        "Tailored ERP, CRM, inventory controllers, custom analytical dashboards, and administrative managers.",
-        "Engineered with role-based access control, secure auditable trails, and robust database architectures."
+        "Bespoke ERP, CRM, inventory managers, and operational dashboards tailored to your business logic.",
+        "Secured with role-based access, audit trails, and robust database design."
       ]
     },
     {
@@ -40,9 +37,8 @@ export default function Experience() {
       subtitle: "Shopify, WooCommerce & Magento stores",
       period: "E-Commerce",
       achievements: [
-        "Full-scale e-commerce stores using WooCommerce, Shopify, or Magento with complete customizations.",
-        "Integrated payment gateways, complex coupon validation modules, shipping trackers, and live inventory sync.",
-        "Engineered visual storefront layouts built to drive engagement and streamline checkout flows."
+        "Full-scale stores on WooCommerce, Shopify, or Magento.",
+        "Integrated payments, live inventory sync, shipping modules, and conversion-focused storefront layouts."
       ]
     },
     {
@@ -50,9 +46,8 @@ export default function Experience() {
       subtitle: "Flexible, secure & scalable content managers",
       period: "CMS",
       achievements: [
-        "Highly secure and scalable content management systems using WordPress, Magento, or Shopify.",
-        "Fully tailored plugin integrations, custom API endpoints, and clean visual drag-and-drop authoring engines.",
-        "Enables marketing and editing teams to easily manage content without writing code."
+        "Scalable content platforms on WordPress, Magento, or Shopify.",
+        "Custom plugins, clean API integrations, and intuitive editors — so your team publishes without touching code."
       ]
     }
   ];
@@ -63,7 +58,7 @@ export default function Experience() {
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-2">
             <span className="text-teal-500 font-mono text-sm">02.</span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tighter">Services & Expertise</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tighter">Services</h2>
           </div>
           <div className="w-20 h-1 bg-teal-500 rounded-full"></div>
         </div>

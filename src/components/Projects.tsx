@@ -16,7 +16,7 @@ export default function Projects({
   projectList,
   showAllButton = true,
   title = "Projects",
-  subtitle = "Featured client platforms engineered by our development team."
+  subtitle = "A curated selection of enterprise builds, custom platforms, and product launches — crafted for clients across Bangladesh, Southeast Asia, and globally remote partnerships."
 }: ProjectsProps) {
   const visibleProjects = projectList ?? projects.filter((project) => project.featured);
 
@@ -55,11 +55,11 @@ export default function Projects({
             >
               <div className="w-full overflow-hidden border-b border-white/5 relative bg-[#1e1e1e]">
                 {project.hasImage ? (
-                  <div className="relative w-full">
+                  <div className="relative w-full aspect-video">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                 ) : (

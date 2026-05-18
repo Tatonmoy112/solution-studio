@@ -54,9 +54,11 @@ export default function Contact() {
             className="space-y-12"
           >
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6 uppercase tracking-tight">Let&apos;s talk about your project</h3>
+              <h3 className="text-2xl font-bold text-white mb-6 uppercase tracking-tight">Ready to build something exceptional?</h3>
               <p className="text-slate-400 text-lg leading-relaxed">
-                Have an upcoming enterprise project, custom ERP requirement, or need automated cloud solutions? Reach out to our engineering team at Solution Studio to discuss how we can help your business scale.
+                Let&apos;s talk — <a href="mailto:hello@solutionstudio.dev" className="text-teal-500 hover:text-teal-400 transition-colors">hello@solutionstudio.dev</a>
+                <br />
+                Based in Dhaka, Bangladesh · Available Worldwide · Remote-First
               </p>
             </div>
 
@@ -67,8 +69,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-white mb-1">Email</h3>
-                  <a href="mailto:hello@solutionstudio.com" className="text-slate-400 hover:text-teal-500 transition-colors">
-                    hello@solutionstudio.com
+                  <a href="mailto:hello@solutionstudio.dev" className="text-slate-400 hover:text-teal-500 transition-colors">
+                    hello@solutionstudio.dev
                   </a>
                 </div>
               </div>
@@ -92,7 +94,7 @@ export default function Contact() {
                 <div>
                   <h3 className="text-lg font-bold text-white mb-1">Location</h3>
                   <p className="text-slate-400">
-                    Dhaka, Bangladesh
+                    Dhaka, Bangladesh · Remote-First
                   </p>
                 </div>
               </div>
