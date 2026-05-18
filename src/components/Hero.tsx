@@ -45,13 +45,6 @@ export default function Hero() {
             >
               View Projects
             </a>
-            <a
-              href="/solution-studio-brochure.pdf"
-              download
-              className="px-8 py-4 border border-white/10 hover:border-teal-500 text-white font-bold uppercase tracking-widest transition-all"
-            >
-              Download Brochure
-            </a>
           </div>
 
 
