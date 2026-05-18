@@ -1,21 +1,58 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase, Calendar } from "lucide-react";
+import { Briefcase, Activity } from "lucide-react";
 
 export default function Experience() {
-  const experiences = [
+  const services = [
     {
-      role: "Associate Software Engineer",
-      company: "Trends Bird Limited",
-      location: "Dhaka, Bangladesh",
-      period: "Aug 2025 - Present",
+      title: "Web Development",
+      subtitle: "Enterprise websites, portals & applications",
+      period: "Web",
       achievements: [
-        "Developed and maintained multiple production-level systems including ERP, OTA, and internal management tools.",
-        "Built STC 360 using Laravel (MVC architecture), implementing authentication and structured backend logic.",
-        "Built Giant BD ERP, a scalable enterprise resource planning system using Next.js and NestJS with a focus on modular architecture, performance optimization, and maintainability.",
-        "Built and maintained DBL Lifestyle, a scalable eCommerce solution using Next.js and NestJS with optimized backend architecture and responsive frontend design.",
-        "Contributed to Finger Flights (OTA platform), implementing API integrations, frontend features, and dynamic booking workflows.",
+        "We build enterprise-grade websites, e-commerce portals, CMS-powered platforms, and interactive web applications.",
+        "Engineered with Next.js, React, Tailwind CSS, and TypeScript for fluid, lightning-fast rendering.",
+        "Highly optimized for speed, responsive design on all devices, search engine optimization (SEO), and conversion."
+      ]
+    },
+    {
+      title: "Mobile Development",
+      subtitle: "Cross-platform mobile apps for iOS and Android",
+      period: "Mobile",
+      achievements: [
+        "We engineer top-tier cross-platform mobile applications using Flutter & Dart.",
+        "High-performance native execution, smooth 60fps animations, and rich custom UI/UX experiences.",
+        "Unified codebase design ensuring faster development velocity, easier maintenance, and dual store deployments."
+      ]
+    },
+    {
+      title: "Custom Systems",
+      subtitle: "Tailored ERP, CRM & operations software",
+      period: "Systems",
+      achievements: [
+        "Custom internal business systems designed precisely around your company's processes and operational rules.",
+        "Tailored ERP, CRM, inventory controllers, custom analytical dashboards, and administrative managers.",
+        "Engineered with role-based access control, secure auditable trails, and robust database architectures."
+      ]
+    },
+    {
+      title: "E-Commerce Solutions",
+      subtitle: "Shopify, WooCommerce & Magento stores",
+      period: "E-Commerce",
+      achievements: [
+        "Full-scale e-commerce stores using WooCommerce, Shopify, or Magento with complete customizations.",
+        "Integrated payment gateways, complex coupon validation modules, shipping trackers, and live inventory sync.",
+        "Engineered visual storefront layouts built to drive engagement and streamline checkout flows."
+      ]
+    },
+    {
+      title: "CMS Development",
+      subtitle: "Flexible, secure & scalable content managers",
+      period: "CMS",
+      achievements: [
+        "Highly secure and scalable content management systems using WordPress, Magento, or Shopify.",
+        "Fully tailored plugin integrations, custom API endpoints, and clean visual drag-and-drop authoring engines.",
+        "Enables marketing and editing teams to easily manage content without writing code."
       ]
     }
   ];
@@ -25,39 +62,39 @@ export default function Experience() {
       <div className="container mx-auto max-w-4xl">
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-orange-500 font-mono text-sm">02.</span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tighter">Experience</h2>
+            <span className="text-teal-500 font-mono text-sm">02.</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tighter">Services & Expertise</h2>
           </div>
-          <div className="w-20 h-1 bg-orange-500 rounded-full"></div>
+          <div className="w-20 h-1 bg-teal-500 rounded-full"></div>
         </div>
 
         <div className="relative border-l border-white/10 ml-4 md:ml-6 space-y-16">
-          {experiences.map((exp, index) => (
+          {services.map((service, index) => (
             <div key={index} className="relative pl-10">
               {/* Timeline Dot */}
-              <div className="absolute left-[-6px] top-2 w-3 h-3 rounded-full bg-orange-500 ring-4 ring-[#121212] z-20"></div>
+              <div className="absolute left-[-6px] top-2 w-3 h-3 rounded-full bg-teal-500 ring-4 ring-[#121212] z-20"></div>
               
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-1">{exp.role}</h3>
-                  <div className="text-orange-500/80 font-medium text-lg flex items-center gap-2">
+                  <h3 className="text-2xl font-bold text-white mb-1">{service.title}</h3>
+                  <div className="text-teal-500/80 font-medium text-lg flex items-center gap-2">
                     <Briefcase size={18} />
-                    <a href="https://trendsbird.com/" target="_blank" rel="noreferrer" className="hover:text-orange-500 hover:underline transition-all">
-                      {exp.company}
-                    </a>
+                    <span className="cursor-default">
+                      {service.subtitle}
+                    </span>
                   </div>
                 </div>
 
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-slate-400 text-sm h-fit border border-white/5">
-                  <Calendar size={14} /> {exp.period}
+                  <Activity size={14} /> {service.period}
                 </div>
               </div>
 
-              <div className="tech-card p-8 rounded-2xl relative z-10 hover:border-orange-500/30 transition-all">
+              <div className="tech-card p-8 rounded-2xl relative z-10 hover:border-teal-500/30 transition-all">
                 <ul className="space-y-4">
-                  {exp.achievements.map((item, i) => (
+                  {service.achievements.map((item, i) => (
                     <li key={i} className="flex gap-3 text-slate-300 leading-relaxed">
-                      <span className="w-1.5 h-1.5 rounded-full bg-orange-500/50 mt-2.5 shrink-0"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal-500/50 mt-2.5 shrink-0"></span>
                       {item}
                     </li>
                   ))}

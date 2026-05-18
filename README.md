@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🪐 Solution Studio
 
-## Getting Started
+> **Enterprise Software Engineering & Custom ERP Architectures**
+> Scaling businesses through premium web platforms, cross-platform mobile apps, and robust backend integrations.
 
-First, run the development server:
+---
+
+## 🌐 Overview
+
+This is the official corporate showcase and portfolio site for **Solution Studio**. Built using a state-of-the-art Next.js architecture, Tailwind CSS, and Framer Motion, it presents the agency's core services, advanced technology stack, active client timelines, and case study portfolio in a high-fidelity, high-contrast visual system.
+
+---
+
+## 🛠️ Technology Stack
+
+* **Core Framework**: [Next.js](https://nextjs.org/) (App Router & Static Generation)
+* **Language**: [TypeScript](https://www.typescriptlang.org/) (Strictly Typed)
+* **Styling**: [Tailwind CSS](https://tailwindcss.com/) & Vanilla Custom CSS Tokens
+* **Animations**: [Framer Motion](https://www.framer.com/motion/) (Micro-interactions, smooth scroll triggers)
+* **Icons**: [Lucide React](https://lucide.dev/)
+* **Integrations**: [Web3Forms](https://web3forms.com/) (Secure client contact forms processing)
+
+---
+
+## 📁 Repository Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+├── public/                     # High-fidelity static assets (brochures, logos, screenshots)
+│   ├── projects/               # Client project presentation mockups
+│   ├── logo.png                # Corporate brand logo
+│   └── solution-studio-brochure.pdf  # Solution Studio PDF brochure
+├── src/
+│   ├── app/                    # Next.js App Router (Layouts & Pages)
+│   │   ├── page.tsx            # Main Interactive B2B Corporate Showcase
+│   │   ├── globals.css         # Foundational CSS design system tokens
+│   │   └── projects/           # Dynamic project routes & deep details layouts
+│   ├── components/             # Reusable interactive components
+│   │   ├── Navbar.tsx          # Adaptive navigational banner
+│   │   ├── Hero.tsx            # Corporate introduction & dynamic CTAs
+│   │   ├── About.tsx           # Agency timeline & development philosophy
+│   │   ├── Experience.tsx      # Comprehensive Services & Expertise breakdown
+│   │   ├── Skills.tsx          # Grouped technology stacks matrix cards
+│   │   ├── Projects.tsx        # High-contrast Client Case Studies grid
+│   │   ├── Contact.tsx         # Secure email contact intakes
+│   │   └── Footer.tsx          # Minimalist copyright banner
+│   └── data/
+│       └── projects.ts         # Centralized, proprietary client project database
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Running Locally
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Prerequisites
+Ensure you have [Node.js](https://nodejs.org/) installed (v18+ recommended).
 
-## Learn More
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Setup Environment Variables
+Create a `.env.local` file in the root directory:
+```env
+NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY="your-access-key-here"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Launch Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to view the live dashboard.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 5. Build for Production
+To verify and generate a highly optimized static bundle:
+```bash
+npm run build
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛡️ License & Privacy
+All code, assets, and project data are proprietary intellectual property of **Solution Studio**. Distribution, cloning, or public hosting of these case studies is strictly restricted.

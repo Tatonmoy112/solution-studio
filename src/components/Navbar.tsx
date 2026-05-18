@@ -46,15 +46,15 @@ export default function Navbar() {
           href="/"
           className="flex items-center gap-4 group"
         >
-          <div className="w-16 h-16 rounded-full border-2 border-orange-500 overflow-hidden relative group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(249,115,22,0.2)] bg-[#1e1e1e]">
+          <div className="w-16 h-16 rounded-full border-2 border-teal-500 overflow-hidden relative group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(20,184,166,0.2)] bg-[#1e1e1e] flex items-center justify-center">
             <img 
-              src="/profile.jpg" 
-              alt="Logo" 
-              className="w-full h-full object-cover [image-rendering:-webkit-optimize-contrast]" 
+              src="/logo.png" 
+              alt="Solution Studio Logo" 
+              className="w-4/5 h-4/5 object-contain p-1" 
             />
           </div>
-          <span className="text-xl font-bold text-white group-hover:text-orange-500 transition-colors font-mono tracking-tighter">
-            BASIT.
+          <span className="text-xl font-bold text-white group-hover:text-teal-500 transition-colors font-mono tracking-tighter">
+            STUDIO.
           </span>
         </Link>
 

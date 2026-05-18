@@ -9,8 +9,8 @@
   :root {
     --background: #121212;
     --foreground: #ffffff;
-    --accent: #f97316; /* Vibrant Orange */
-    --accent-hover: #ea580c;
+    --accent: #14b8a6; /* Vibrant Teal */
+    --accent-hover: #0d9488;
     --muted: #1e1e1e;
     --border: rgba(255, 255, 255, 0.05);
   }
@@ -65,7 +65,7 @@
   .tech-card:hover {
     background: rgba(255, 255, 255, 0.04);
     border-color: var(--accent);
-    box-shadow: 0 0 30px rgba(249, 115, 22, 0.1);
+    box-shadow: 0 0 30px rgba(20, 184, 166, 0.1);
   }
 
   .glass-card {
@@ -77,7 +77,7 @@
 
   .glass-card:hover {
     border-color: var(--accent);
-    box-shadow: 0 0 20px rgba(249, 115, 22, 0.1);
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.1);
   }
 
   .section-number {

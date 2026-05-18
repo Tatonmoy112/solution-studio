@@ -5,7 +5,7 @@ import { projects } from "@/data/projects";
 
 export default function AllProjectsPage() {
   return (
-    <main className="min-h-screen bg-[#121212] selection:bg-orange-500/30 selection:text-orange-500">
+    <main className="min-h-screen bg-[#121212] selection:bg-teal-500/30 selection:text-teal-500">
       <Navbar />
       <div className="pt-32 pb-24 px-6 md:px-12">
         <Projects

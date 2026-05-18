@@ -3,7 +3,6 @@
 import { useParams, useRouter } from "next/navigation";
 import { projects } from "@/data/projects";
 import { ArrowLeft, ExternalLink, CheckCircle2, Trophy, Info } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -18,7 +17,7 @@ export default function ProjectDetails() {
       <div className="min-h-screen bg-[#121212] flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-4">Project Not Found</h1>
-          <Link href="/" className="text-orange-500 hover:underline">Return to Home</Link>
+          <Link href="/" className="text-teal-500 hover:underline">Return to Home</Link>
         </div>
       </div>
     );
@@ -31,8 +30,8 @@ export default function ProjectDetails() {
           <button className="px-8 py-4 bg-slate-800 text-slate-500 font-bold uppercase tracking-widest cursor-not-allowed flex items-center gap-2">
             Live Demo <Info size={16} />
           </button>
-          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-[#1e1e1e] border border-orange-500/30 text-slate-300 text-xs rounded-lg opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity pointer-events-none z-50 text-center shadow-xl">
-            Company product - privacy concern to show live.
+          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-[#1e1e1e] border border-teal-500/30 text-slate-300 text-xs rounded-lg opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity pointer-events-none z-50 text-center shadow-xl">
+            Company project - privacy concern to show live.
           </div>
         </div>
       );
@@ -43,7 +42,7 @@ export default function ProjectDetails() {
           <button className="px-8 py-4 bg-slate-800 text-slate-500 font-bold uppercase tracking-widest cursor-not-allowed flex items-center gap-2">
             Live Demo <Info size={16} />
           </button>
-          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 p-3 bg-[#1e1e1e] border border-orange-500/30 text-slate-300 text-xs rounded-lg opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity pointer-events-none z-50 text-center shadow-xl">
+          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 p-3 bg-[#1e1e1e] border border-teal-500/30 text-slate-300 text-xs rounded-lg opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity pointer-events-none z-50 text-center shadow-xl">
             Development ongoing — not live yet.
           </div>
         </div>
@@ -54,34 +53,9 @@ export default function ProjectDetails() {
         href={project.demo} 
         target="_blank" 
         rel="noreferrer" 
-        className="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-[#121212] font-black uppercase tracking-widest transition-all flex items-center gap-2"
+        className="px-8 py-4 bg-teal-500 hover:bg-teal-600 text-[#121212] font-black uppercase tracking-widest transition-all flex items-center gap-2"
       >
         Live Demo <ExternalLink size={18} />
-      </a>
-    );
-  };
-
-  const renderCodeButton = () => {
-    if (project.codeStatus === "private") {
-      return (
-        <div className="group relative">
-          <button className="px-8 py-4 border border-white/5 text-slate-600 font-bold uppercase tracking-widest cursor-not-allowed flex items-center gap-2">
-            Source Code <Info size={16} />
-          </button>
-          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-[#1e1e1e] border border-orange-500/30 text-slate-300 text-xs rounded-lg opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity pointer-events-none z-50 text-center shadow-xl">
-            Company project - privacy concern to show source code.
-          </div>
-        </div>
-      );
-    }
-    return (
-      <a 
-        href={project.github} 
-        target="_blank" 
-        rel="noreferrer" 
-        className="px-8 py-4 border border-white/10 hover:border-orange-500 text-white font-bold uppercase tracking-widest transition-all flex items-center gap-2"
-      >
-        Source Code <FaGithub size={18} />
       </a>
     );
   };
@@ -95,7 +69,7 @@ export default function ProjectDetails() {
           {/* Back Button */}
           <button 
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-slate-500 hover:text-orange-500 transition-colors mb-12 font-mono uppercase tracking-widest text-sm"
+            className="flex items-center gap-2 text-slate-500 hover:text-teal-500 transition-colors mb-12 font-mono uppercase tracking-widest text-sm"
           >
             <ArrowLeft size={16} />
             Back to Home
@@ -105,8 +79,8 @@ export default function ProjectDetails() {
           <div className="grid md:grid-cols-2 gap-12 items-start mb-20">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-orange-500 font-mono text-sm tracking-widest uppercase">Project Overview</span>
-                <div className="w-12 h-px bg-orange-500/30"></div>
+                <span className="text-teal-500 font-mono text-sm tracking-widest uppercase">Project Overview</span>
+                <div className="w-12 h-px bg-teal-500/30"></div>
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-8 tracking-tighter uppercase">{project.title}</h1>
               <p className="text-xl text-slate-400 leading-relaxed mb-10 font-light">
@@ -115,7 +89,6 @@ export default function ProjectDetails() {
               
               <div className="flex flex-wrap gap-4">
                 {renderDemoButton()}
-                {renderCodeButton()}
               </div>
             </div>
 
@@ -133,7 +106,7 @@ export default function ProjectDetails() {
             {/* Features */}
             <div>
               <div className="flex items-center gap-3 mb-8">
-                <div className="p-2 bg-orange-500/10 rounded-lg text-orange-500">
+                <div className="p-2 bg-teal-500/10 rounded-lg text-teal-500">
                   <CheckCircle2 size={24} />
                 </div>
                 <h2 className="text-2xl font-bold uppercase tracking-tight">Key Features</h2>
@@ -141,7 +114,7 @@ export default function ProjectDetails() {
               <ul className="space-y-4">
                 {project.features.map((feature, i) => (
                   <li key={i} className="flex gap-3 text-slate-400 leading-relaxed">
-                    <span className="text-orange-500 font-mono mt-1">▸</span>
+                    <span className="text-teal-500 font-mono mt-1">▸</span>
                     {feature}
                   </li>
                 ))}
@@ -151,7 +124,7 @@ export default function ProjectDetails() {
             {/* Challenges & Solutions */}
             <div>
               <div className="flex items-center gap-3 mb-8">
-                <div className="p-2 bg-orange-500/10 rounded-lg text-orange-500">
+                <div className="p-2 bg-teal-500/10 rounded-lg text-teal-500">
                   <Trophy size={24} />
                 </div>
                 <h2 className="text-2xl font-bold uppercase tracking-tight">Core Challenges</h2>
@@ -159,7 +132,7 @@ export default function ProjectDetails() {
               <ul className="space-y-4">
                 {project.challenges.map((challenge, i) => (
                   <li key={i} className="flex gap-3 text-slate-400 leading-relaxed">
-                    <span className="text-orange-500 font-mono mt-1">▸</span>
+                    <span className="text-teal-500 font-mono mt-1">▸</span>
                     {challenge}
                   </li>
                 ))}
@@ -170,14 +143,14 @@ export default function ProjectDetails() {
           {/* Benefits Section */}
           <div className="mt-16 tech-card p-12 rounded-3xl border border-white/5 bg-white/[0.01]">
             <div className="flex items-center gap-3 mb-10 justify-center">
-              <div className="w-12 h-px bg-orange-500/30"></div>
+              <div className="w-12 h-px bg-teal-500/30"></div>
               <h2 className="text-3xl font-bold uppercase tracking-tight text-center">Project Benefits</h2>
-              <div className="w-12 h-px bg-orange-500/30"></div>
+              <div className="w-12 h-px bg-teal-500/30"></div>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {project.benefits.map((benefit, i) => (
-                <div key={i} className="flex flex-col gap-3 p-6 bg-white/[0.02] border border-white/5 rounded-2xl hover:border-orange-500/30 transition-all">
-                  <span className="text-orange-500 font-mono text-xl">0{i+1}.</span>
+                <div key={i} className="flex flex-col gap-3 p-6 bg-white/[0.02] border border-white/5 rounded-2xl hover:border-teal-500/30 transition-all">
+                  <span className="text-teal-500 font-mono text-xl">0{i+1}.</span>
                   <p className="text-slate-300 leading-relaxed font-medium">{benefit}</p>
                 </div>
               ))}
@@ -191,7 +164,7 @@ export default function ProjectDetails() {
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-6 py-3 bg-white/5 border border-white/10 text-white font-mono uppercase tracking-widest text-xs rounded-full hover:border-orange-500 transition-colors"
+                  className="px-6 py-3 bg-white/5 border border-white/10 text-white font-mono uppercase tracking-widest text-xs rounded-full hover:border-teal-500 transition-colors"
                 >
                   {tag}
                 </span>

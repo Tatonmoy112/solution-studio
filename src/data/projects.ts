@@ -168,7 +168,7 @@ export const projects: Project[] = [
     description: "Complete E-commerce system with separate Admin and User panels for global product selling.",
     fullDescription: "This comprehensive E-commerce platform is designed to modernize traditional retail by enabling 24/7 global sales. It features a seamless User Site for customers to browse, customize, and purchase products, alongside a powerful Admin Panel that centralizes product management, order fulfillment, and sales analytics into one automated workflow.",
     image: "/projects/E-commerce.png",
-    github: "https://github.com/ridwanul-basit/E-commerce-with-Next-Js",
+    github: "#",
     demo: "#",
     tags: ["Next.js", "Node.js", "Express.js", "MongoDB"],
     features: [
@@ -203,7 +203,7 @@ export const projects: Project[] = [
     description: "Multi-role healthcare platform for online appointments, medicine sales, and centralized management.",
     fullDescription: "The Online Healthcare Platform is a complete digital solution that bridges the gap between patients, medical professionals, and pharmacies. It solves traditional healthcare challenges like long wait times and poor accessibility by providing a centralized system for online appointment booking, digital medicine purchasing, and streamlined service management.",
     image: "/projects/health.png",
-    github: "https://github.com/ridwanul-basit/Online-Health-Care",
+    github: "#",
     demo: "#",
     tags: ["React", "Node.js", "Express.js", "MongoDB"],
     features: [
