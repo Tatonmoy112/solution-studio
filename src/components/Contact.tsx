@@ -94,15 +94,13 @@ export default function Contact() {
                 <div>
                   <h3 className="text-lg font-bold text-white mb-1">Location</h3>
                   <p className="text-slate-400 leading-relaxed">
-                    Mofizuddin Tower
+                    House # 55,
                     <br />
-                    Plot #SA-622, RS-753,
+                    Road # Hazi Askor Ali Road,
                     <br />
-                    Road# Mokter Bari Link Road,
+                    Khapara, Tongi,
                     <br />
-                    Block# Auch para, Tongi,
-                    <br />
-                    Gazipur - 1711
+                    Gazipur - 1712
                   </p>
                 </div>
               </div>
