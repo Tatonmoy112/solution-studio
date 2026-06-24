@@ -58,7 +58,7 @@ export default function Contact() {
               <p className="text-slate-400 text-lg leading-relaxed">
                 Let&apos;s talk — <a href="mailto:hello@solutionstudio.dev" className="text-teal-500 hover:text-teal-400 transition-colors">hello@solutionstudio.dev</a>
                 <br />
-                Based in Dhaka, Bangladesh · Available Worldwide · Remote-First
+                Based in Gazipur, Bangladesh · Available Worldwide · Remote-First
               </p>
             </div>
 
@@ -82,7 +82,7 @@ export default function Contact() {
                 <div>
                   <h3 className="text-lg font-bold text-white mb-1">Phone</h3>
                   <a href="tel:+8801791116481" className="text-slate-400 hover:text-teal-500 transition-colors">
-                    +880 1791-116481
+                    +880 1316-571406
                   </a>
                 </div>
               </div>
@@ -93,8 +93,16 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-white mb-1">Location</h3>
-                  <p className="text-slate-400">
-                    Dhaka, Bangladesh · Remote-First
+                  <p className="text-slate-400 leading-relaxed">
+                    Mofizuddin Tower
+                    <br />
+                    Plot #SA-622, RS-753,
+                    <br />
+                    Road# Mokter Bari Link Road,
+                    <br />
+                    Block# Auch para, Tongi,
+                    <br />
+                    Gazipur - 1711
                   </p>
                 </div>
               </div>

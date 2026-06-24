@@ -83,7 +83,7 @@ export default function About() {
                           Solution Studio Launch • 2026
                         </p>
                         <p className="text-slate-500 text-xs mt-1 uppercase tracking-wider">
-                          Dhaka, Bangladesh & Remote
+                          Gazipur, Bangladesh & Remote
                         </p>
                       </div>
                     </div>
