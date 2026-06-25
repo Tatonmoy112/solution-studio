@@ -40,7 +40,7 @@ export default function Contact() {
       <div className="container mx-auto max-w-5xl relative z-10">
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-teal-500 font-mono text-sm">05.</span>
+            <span className="text-teal-500 font-mono text-sm">06.</span>
             <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tighter">Contact</h2>
           </div>
           <div className="w-20 h-1 bg-teal-500 rounded-full"></div>

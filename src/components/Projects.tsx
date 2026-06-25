@@ -27,7 +27,7 @@ export default function Projects({
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <span className="text-teal-500 font-mono text-sm">04.</span>
+                <span className="text-teal-500 font-mono text-sm">05.</span>
                 <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tighter">{title}</h2>
               </div>
               {subtitle ? (

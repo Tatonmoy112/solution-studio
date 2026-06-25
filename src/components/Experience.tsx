@@ -57,7 +57,7 @@ export default function Experience() {
       <div className="container mx-auto max-w-4xl">
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-teal-500 font-mono text-sm">02.</span>
+            <span className="text-teal-500 font-mono text-sm">03.</span>
             <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tighter">Services</h2>
           </div>
           <div className="w-20 h-1 bg-teal-500 rounded-full"></div>

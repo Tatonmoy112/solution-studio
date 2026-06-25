@@ -19,7 +19,7 @@ export default function About() {
           <div className="flex-1">
             <div className="mb-16">
               <div className="flex items-center gap-3 mb-2">
-                <span className="text-teal-500 font-mono text-sm">01.</span>
+                <span className="text-teal-500 font-mono text-sm">02.</span>
                 <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tighter">
                   About Us
                 </h2>

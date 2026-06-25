@@ -25,7 +25,7 @@ export default function Hero() {
           className="z-10"
         >
           <div className="flex items-center gap-3 mb-6">
-            <span className="text-teal-500 font-mono text-sm tracking-widest uppercase">00. Introduction</span>
+            <span className="text-teal-500 font-mono text-sm tracking-widest uppercase">01. Introduction</span>
             <div className="w-12 h-px bg-teal-500/30"></div>
           </div>
           <h1 className="text-5xl md:text-8xl font-bold leading-tight mb-8 tracking-tighter text-white">
