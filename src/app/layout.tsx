@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Solution Studio | Custom Software & Enterprise Solutions",
+  title: "Solution Studio",
   description: "Solution Studio delivers scalable software solutions for enterprises, startups, and e-commerce platforms.",
 };
 
