@@ -54,7 +54,7 @@ export default function Skills() {
 
   return (
     <section id="skills" className="py-24 px-6 md:px-12">
-      <div className="container mx-auto max-w-5xl">
+      <div className="container mx-auto max-w-[1550px]">
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-2">
             <span className="text-teal-500 font-mono text-sm">04.</span>

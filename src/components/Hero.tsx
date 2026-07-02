@@ -12,11 +12,11 @@ export default function Hero() {
       className="min-h-screen flex items-center justify-center pt-32 md:pt-20 pb-12 px-6 md:px-12 relative overflow-hidden"
     >
       {/* Vertical Decorative Name Watermark */}
-      <div className="absolute -right-12 top-1/2 -translate-y-1/2 hidden xl:block select-none pointer-events-none">
-        <span className="text-vertical text-[12rem] font-black text-white/5 uppercase tracking-tighter">STUDIO</span>
+      <div className="absolute right-8 top-32 hidden lg:flex flex-col items-center select-none pointer-events-none">
+        <span className="text-vertical text-5xl xl:text-6xl font-black text-white/5 uppercase tracking-tighter">SOLUTION</span>
       </div>
 
-      <div className="container mx-auto max-w-5xl z-10 grid md:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto max-w-[1550px] z-10 grid md:grid-cols-2 gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}

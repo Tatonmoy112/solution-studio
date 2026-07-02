@@ -65,7 +65,7 @@ export default function ProjectDetails() {
       <Navbar />
       
       <div className="pt-32 pb-24 px-6 md:px-12">
-        <div className="container mx-auto max-w-5xl">
+        <div className="container mx-auto max-w-[1550px]">
           {/* Back Button */}
           <button 
             onClick={() => router.back()}

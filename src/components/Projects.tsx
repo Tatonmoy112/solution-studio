@@ -22,7 +22,7 @@ export default function Projects({
 
   return (
     <section id="projects" key="projects-section" className="py-24 px-6 md:px-12 bg-[#121212]">
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-[1550px]">
         <div className="mb-16">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>

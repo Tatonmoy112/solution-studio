@@ -6,7 +6,7 @@ import { Award, Code2 } from "lucide-react";
 export default function About() {
   return (
     <section id="about" className="py-24 px-6 md:px-12">
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-[1550px]">
         <div className="flex gap-12">
           {/* Vertical Decoration */}
           <div className="hidden lg:flex flex-col items-center justify-start pt-4 shrink-0">
