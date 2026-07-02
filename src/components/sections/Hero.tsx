@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center pt-24 pb-16 px-6 md:px-12 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center pt-36 md:pt-24 pb-16 px-6 md:px-12 relative overflow-hidden"
     >
       {/* Background Decorative Mesh Gradients */}
       <div className="absolute top-1/4 -right-1/4 w-96 h-96 md:w-[600px] md:h-[600px] bg-teal-500/10 rounded-full blur-[100px] -z-10 animate-pulse" />
