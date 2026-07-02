@@ -4,8 +4,8 @@ import { useParams, useRouter } from "next/navigation";
 import { projects } from "@/data/projects";
 import { ArrowLeft, ExternalLink, CheckCircle2, Trophy, Info } from "lucide-react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 export default function ProjectDetails() {
   const params = useParams();

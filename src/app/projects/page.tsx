@@ -1,6 +1,6 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Projects from "@/components/Projects";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import Projects from "@/components/sections/Projects";
 import { projects } from "@/data/projects";
 
 export default function AllProjectsPage() {

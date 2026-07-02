@@ -1,21 +1,31 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Experience from "@/components/Experience";
-import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Hero from "@/components/sections/Hero";
+import SocialProof from "@/components/sections/SocialProof";
+import About from "@/components/sections/About";
+import WhyChooseUs from "@/components/sections/WhyChooseUs";
+import Services from "@/components/sections/Services";
+import Industries from "@/components/sections/Industries";
+import Process from "@/components/sections/Process";
+import Values from "@/components/sections/Values";
+import Founder from "@/components/sections/Founder";
+import CallToAction from "@/components/sections/CallToAction";
+import Contact from "@/components/sections/Contact";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#121212] selection:bg-teal-500/30 selection:text-teal-500">
       <Navbar />
       <Hero />
+      <SocialProof />
       <About />
-      <Experience />
-      <Skills />
-      <Projects />
+      <WhyChooseUs />
+      <Services />
+      <Industries />
+      <Process />
+      <Values />
+      <Founder />
+      <CallToAction />
       <Contact />
       <Footer />
     </main>
