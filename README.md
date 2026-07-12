@@ -18,7 +18,7 @@ This is the official corporate showcase and portfolio site for **Solution Studio
 * **Styling**: [Tailwind CSS](https://tailwindcss.com/) & Vanilla Custom CSS Tokens
 * **Animations**: [Framer Motion](https://www.framer.com/motion/) (Micro-interactions, smooth scroll triggers)
 * **Icons**: [Lucide React](https://lucide.dev/)
-* **Integrations**: [Web3Forms](https://web3forms.com/) (Secure client contact forms processing)
+* **Integrations**: [Supabase](https://supabase.com/) (Server-side contact lead capture)
 
 ---
 
@@ -62,8 +62,10 @@ npm install
 ### 3. Setup Environment Variables
 Create a `.env.local` file in the root directory:
 ```env
-NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY="your-access-key-here"
+SUPABASE_URL="https://your-project-ref.supabase.co"
+SUPABASE_SERVICE_ROLE_KEY="your-service-role-key"
 ```
+Run `supabase/migrations/0001_create_leads_table.sql` in the Supabase SQL Editor before testing submissions.
 
 ### 4. Launch Development Server
 ```bash

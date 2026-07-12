@@ -36,7 +36,7 @@ export default function Founder() {
           >
             <div className="space-y-3">
               <span className="text-teal-500 font-mono text-xs uppercase tracking-widest block">
-                // Message from Leadership
+                {"// Message from Leadership"}
               </span>
               <h3 className="text-3xl md:text-4xl font-extrabold text-white leading-tight font-heading">
                 {name}

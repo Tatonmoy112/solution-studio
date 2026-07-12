@@ -76,7 +76,7 @@ export default function Navbar() {
               href="#contact"
               className="px-6 py-2.5 bg-teal-500 hover:bg-teal-600 text-[#121212] font-semibold text-sm uppercase tracking-wider rounded-full transition-all duration-300 hover:shadow-[0_0_15px_rgba(20,184,166,0.4)]"
             >
-              Let's Talk
+              Let&apos;s Talk
             </Link>
           </div>
 
@@ -114,7 +114,7 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full text-center py-3 bg-teal-500 hover:bg-teal-600 text-[#121212] font-semibold text-sm uppercase tracking-wider rounded-full mt-4 transition-all"
               >
-                Let's Talk
+                Let&apos;s Talk
               </Link>
             </motion.div>
           )}

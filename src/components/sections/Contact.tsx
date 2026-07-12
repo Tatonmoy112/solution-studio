@@ -3,33 +3,153 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
-import { contactInfo } from "@/lib/content";
+
+type ContactField = "name" | "email" | "subject" | "message";
+type ContactFieldErrors = Partial<Record<ContactField, string>>;
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const FIELD_LIMITS = {
+  name: 100,
+  email: 200,
+  subject: 200,
+  message: 5000,
+} as const;
+
+const fieldBaseClass =
+  "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500/30 transition-all text-sm";
+
+const fieldErrorClass =
+  "border-red-400/60 focus:border-red-400 focus:ring-red-400/30";
+
+function getStringValue(formData: FormData, field: ContactField) {
+  const value = formData.get(field);
+  return typeof value === "string" ? value : "";
+}
+
+function validateContactField(field: ContactField, value: string) {
+  const trimmedValue = value.trim();
+
+  if (!trimmedValue) {
+    return `${field[0].toUpperCase()}${field.slice(1)} is required.`;
+  }
+
+  if (trimmedValue.length > FIELD_LIMITS[field]) {
+    return `${field[0].toUpperCase()}${field.slice(1)} must be ${FIELD_LIMITS[field]} characters or less.`;
+  }
+
+  if (field === "email" && !EMAIL_PATTERN.test(trimmedValue)) {
+    return "Enter a valid email address.";
+  }
+
+  return "";
+}
+
+function validateContactForm(formData: FormData) {
+  const errors: ContactFieldErrors = {};
+
+  (["name", "email", "subject", "message"] as ContactField[]).forEach((field) => {
+    const error = validateContactField(field, getStringValue(formData, field));
+    if (error) {
+      errors[field] = error;
+    }
+  });
+
+  return errors;
+}
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
+
+  const getFieldClassName = (field: ContactField, extraClass = "") =>
+    `${fieldBaseClass} ${fieldErrors[field] ? fieldErrorClass : ""} ${extraClass}`.trim();
+
+  const handleFieldBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const field = e.currentTarget.name as ContactField;
+    const error = validateContactField(field, e.currentTarget.value);
+
+    setFieldErrors((currentErrors) => {
+      const nextErrors = { ...currentErrors };
+      if (error) {
+        nextErrors[field] = error;
+      } else {
+        delete nextErrors[field];
+      }
+      return nextErrors;
+    });
+  };
+
+  const handleFieldChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const field = e.currentTarget.name as ContactField;
+
+    if (!fieldErrors[field]) {
+      return;
+    }
+
+    const error = validateContactField(field, e.currentTarget.value);
+    setFieldErrors((currentErrors) => {
+      const nextErrors = { ...currentErrors };
+      if (error) {
+        nextErrors[field] = error;
+      } else {
+        delete nextErrors[field];
+      }
+      return nextErrors;
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
+    setErrorMessage(null);
+
     const formData = new FormData(e.currentTarget);
-    formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "4477b1bf-0e5f-4b6c-958c-3e0d8e8c37b9");
+    const nextFieldErrors = validateContactForm(formData);
+
+    setFieldErrors(nextFieldErrors);
+
+    if (Object.keys(nextFieldErrors).length > 0) {
+      setErrorMessage("Please fix the highlighted fields before sending.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const payload = {
+      name: getStringValue(formData, "name").trim(),
+      email: getStringValue(formData, "email").trim(),
+      subject: getStringValue(formData, "subject").trim(),
+      message: getStringValue(formData, "message").trim(),
+      company: formData.get("company"),
+    };
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/submit-lead", {
         method: "POST",
-        body: formData
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();
 
-      if (data.success) {
-        setIsSuccess(true);
-        (e.target as HTMLFormElement).reset();
+      if (!response.ok) {
+        setErrorMessage(
+          data?.error || "Something went wrong. Please try again, or email us directly."
+        );
+        return;
       }
+
+      setIsSuccess(true);
+      setFieldErrors({});
+      (e.target as HTMLFormElement).reset();
     } catch (error) {
       console.error("Error submitting form:", error);
+      setErrorMessage("Something went wrong. Please try again, or email us directly.");
     } finally {
       setIsSubmitting(false);
       setTimeout(() => setIsSuccess(false), 5000);
@@ -99,7 +219,21 @@ export default function Contact() {
             {/* Ambient glow in card background */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
 
-            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+            <form onSubmit={handleSubmit} className="space-y-6 relative z-10" noValidate>
+              <div
+                aria-hidden="true"
+                className="absolute size-0 overflow-hidden opacity-0 pointer-events-none"
+              >
+                <label htmlFor="company">Company</label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-mono text-slate-400 uppercase tracking-widest">
@@ -110,9 +244,20 @@ export default function Contact() {
                     id="name" 
                     name="name"
                     required
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500/30 transition-all text-sm"
+                    maxLength={FIELD_LIMITS.name}
+                    autoComplete="name"
+                    aria-invalid={Boolean(fieldErrors.name)}
+                    aria-describedby={fieldErrors.name ? "name-error" : undefined}
+                    onBlur={handleFieldBlur}
+                    onChange={handleFieldChange}
+                    className={getFieldClassName("name")}
                     placeholder="Your Name"
                   />
+                  {fieldErrors.name && (
+                    <p id="name-error" className="text-xs text-red-300" role="alert">
+                      {fieldErrors.name}
+                    </p>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-mono text-slate-400 uppercase tracking-widest">
@@ -123,9 +268,21 @@ export default function Contact() {
                     id="email" 
                     name="email"
                     required
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500/30 transition-all text-sm"
+                    maxLength={FIELD_LIMITS.email}
+                    autoComplete="email"
+                    inputMode="email"
+                    aria-invalid={Boolean(fieldErrors.email)}
+                    aria-describedby={fieldErrors.email ? "email-error" : undefined}
+                    onBlur={handleFieldBlur}
+                    onChange={handleFieldChange}
+                    className={getFieldClassName("email")}
                     placeholder="Email Address"
                   />
+                  {fieldErrors.email && (
+                    <p id="email-error" className="text-xs text-red-300" role="alert">
+                      {fieldErrors.email}
+                    </p>
+                  )}
                 </div>
               </div>
               
@@ -138,9 +295,19 @@ export default function Contact() {
                   id="subject" 
                   name="subject"
                   required
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500/30 transition-all text-sm"
+                  maxLength={FIELD_LIMITS.subject}
+                  aria-invalid={Boolean(fieldErrors.subject)}
+                  aria-describedby={fieldErrors.subject ? "subject-error" : undefined}
+                  onBlur={handleFieldBlur}
+                  onChange={handleFieldChange}
+                  className={getFieldClassName("subject")}
                   placeholder="What is this regarding?"
                 />
+                {fieldErrors.subject && (
+                  <p id="subject-error" className="text-xs text-red-300" role="alert">
+                    {fieldErrors.subject}
+                  </p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -151,11 +318,30 @@ export default function Contact() {
                   id="message" 
                   name="message"
                   required
+                  maxLength={FIELD_LIMITS.message}
                   rows={5}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500/30 transition-all resize-none text-sm"
+                  aria-invalid={Boolean(fieldErrors.message)}
+                  aria-describedby={fieldErrors.message ? "message-error" : undefined}
+                  onBlur={handleFieldBlur}
+                  onChange={handleFieldChange}
+                  className={getFieldClassName("message", "resize-none")}
                   placeholder="Your message here..."
                 />
+                {fieldErrors.message && (
+                  <p id="message-error" className="text-xs text-red-300" role="alert">
+                    {fieldErrors.message}
+                  </p>
+                )}
               </div>
+
+              {errorMessage && (
+                <p
+                  role="alert"
+                  className="text-sm text-red-300 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3"
+                >
+                  {errorMessage}
+                </p>
+              )}
 
               <button
                 type="submit"
