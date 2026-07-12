@@ -64,6 +64,10 @@ Create a `.env.local` file in the root directory:
 ```env
 SUPABASE_URL="https://your-project-ref.supabase.co"
 SUPABASE_SERVICE_ROLE_KEY="your-service-role-key"
+
+RESEND_API_KEY="your_resend_api_key"
+LEAD_NOTIFICATION_EMAIL="your_receiving_email@gmail.com"
+LEAD_NOTIFICATION_FROM="Solution Studio <contact@solutionstudio.bd>"
 ```
 Run `supabase/migrations/0001_create_leads_table.sql` in the Supabase SQL Editor before testing submissions.
 
