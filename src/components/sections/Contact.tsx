@@ -246,6 +246,7 @@ export default function Contact() {
                     required
                     maxLength={FIELD_LIMITS.name}
                     autoComplete="name"
+                    data-clarity-mask="true"
                     aria-invalid={Boolean(fieldErrors.name)}
                     aria-describedby={fieldErrors.name ? "name-error" : undefined}
                     onBlur={handleFieldBlur}
@@ -271,6 +272,7 @@ export default function Contact() {
                     maxLength={FIELD_LIMITS.email}
                     autoComplete="email"
                     inputMode="email"
+                    data-clarity-mask="true"
                     aria-invalid={Boolean(fieldErrors.email)}
                     aria-describedby={fieldErrors.email ? "email-error" : undefined}
                     onBlur={handleFieldBlur}
@@ -296,6 +298,7 @@ export default function Contact() {
                   name="subject"
                   required
                   maxLength={FIELD_LIMITS.subject}
+                  data-clarity-mask="true"
                   aria-invalid={Boolean(fieldErrors.subject)}
                   aria-describedby={fieldErrors.subject ? "subject-error" : undefined}
                   onBlur={handleFieldBlur}
@@ -320,6 +323,7 @@ export default function Contact() {
                   required
                   maxLength={FIELD_LIMITS.message}
                   rows={5}
+                  data-clarity-mask="true"
                   aria-invalid={Boolean(fieldErrors.message)}
                   aria-describedby={fieldErrors.message ? "message-error" : undefined}
                   onBlur={handleFieldBlur}

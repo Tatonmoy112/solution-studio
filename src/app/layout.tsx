@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Security } from "@/components/Security";
+import MicrosoftClarity from "@/components/MicrosoftClarity";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
         <main className="min-h-screen">
           {children}
         </main>
+        <MicrosoftClarity />
       </body>
     </html>
   );
