@@ -11,10 +11,10 @@ export function Security() {
 
     // Prevent common developer tools shortcuts
     const handleKeyDown = (e: KeyboardEvent) => {
-      const key = e.key.toLowerCase();
+      const key = typeof e.key === "string" ? e.key.toLowerCase() : "";
       
       // F12
-      if (e.key === "F12") {
+      if (key === "f12") {
         e.preventDefault();
       }
 

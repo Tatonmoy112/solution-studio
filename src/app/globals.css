@@ -8,12 +8,12 @@
 
 @layer base {
   :root {
-    --background: #121212;
-    --foreground: #ffffff;
+    --background: #f9f9f9;
+    --foreground: #181a18;
     --accent: #14b8a6; /* Vibrant Teal */
     --accent-hover: #0d9488;
-    --muted: #1e1e1e;
-    --border: rgba(255, 255, 255, 0.05);
+    --muted: #eef0ee;
+    --border: rgba(24, 26, 24, 0.1);
   }
 
   html {
@@ -34,7 +34,7 @@
     position: relative;
     /* Tech Plexus Pattern Background */
     background-image: 
-      radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+      radial-gradient(circle at 2px 2px, rgba(24, 26, 24, 0.04) 1px, transparent 0);
     background-size: 40px 40px;
   }
 
@@ -43,7 +43,7 @@
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #121212;
+    background: #f9f9f9;
   }
   ::-webkit-scrollbar-thumb {
     background: #333;
@@ -62,21 +62,21 @@
   }
 
   .tech-card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(24, 26, 24, 0.08);
     transition: all 0.3s ease;
   }
 
   .tech-card:hover {
-    background: rgba(255, 255, 255, 0.04);
+    background: #ffffff;
     border-color: var(--accent);
     box-shadow: 0 0 30px rgba(20, 184, 166, 0.1);
   }
 
   .glass-card {
-    background: rgba(30, 30, 30, 0.6);
+    background: rgba(255, 255, 255, 0.82);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(24, 26, 24, 0.08);
     transition: all 0.3s ease;
   }
 
@@ -89,5 +89,38 @@
     font-family: var(--font-mono);
     color: var(--accent);
     margin-right: 0.75rem;
+  }
+}
+
+@layer utilities {
+  section {
+    background-color: #f9f9f9 !important;
+    color: #181a18 !important;
+  }
+
+  main .text-white,
+  main [class*="text-slate-"] {
+    color: #181a18 !important;
+  }
+
+  section .tech-card,
+  main [class*="bg-[#121212]"],
+  main [class*="bg-[#161616]"],
+  main [class*="bg-[#1e1e1e]"],
+  footer [class*="bg-[#121212]"],
+  footer [class*="bg-[#161616]"],
+  footer [class*="bg-[#1e1e1e]"] {
+    background-color: rgba(255, 255, 255, 0.72) !important;
+    border-color: rgba(24, 26, 24, 0.08);
+  }
+
+  main [class*="border-white/"],
+  footer [class*="border-white/"] {
+    border-color: rgba(24, 26, 24, 0.1) !important;
+  }
+
+  main [class*="bg-white/"],
+  footer [class*="bg-white/"] {
+    background-color: rgba(255, 255, 255, 0.72) !important;
   }
 }

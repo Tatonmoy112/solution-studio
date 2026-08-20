@@ -14,7 +14,7 @@ export default function ProjectDetails() {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-[#121212] flex items-center justify-center">
+      <div className="min-h-screen bg-[#F9F9F9] text-[#181A18] flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-4">Project Not Found</h1>
           <Link href="/" className="text-teal-500 hover:underline">Return to Home</Link>
@@ -61,7 +61,7 @@ export default function ProjectDetails() {
   };
 
   return (
-    <main className="min-h-screen bg-[#121212] text-white">
+    <main className="min-h-screen bg-[#F9F9F9] text-[#181A18]">
       <Navbar />
       
       <div className="pt-32 pb-24 px-6 md:px-12">
