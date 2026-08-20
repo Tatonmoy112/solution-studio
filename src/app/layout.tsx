@@ -13,6 +13,10 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Solution Studio",
   description: "Solution Studio delivers scalable software solutions for enterprises, startups, and e-commerce platforms in Bangladesh and globally.",
+  icons: {
+    icon: [{ url: "/ss_logo_icon.svg", type: "image/svg+xml" }],
+    shortcut: "/ss_logo_icon.svg",
+  },
 };
 
 export default function RootLayout({

@@ -44,15 +44,16 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between w-full">
           {/* Logo Left */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-full border border-teal-500 overflow-hidden relative group-hover:scale-105 transition-transform bg-[#1e1e1e] flex items-center justify-center">
-              <img 
-                src="/logo.png" 
-                alt="Solution Studio Logo" 
-                className="w-4/5 h-4/5 object-contain" 
+          <Link href="/" className="group flex items-center gap-3" aria-label="Solution Studio home">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-teal-500 bg-[#1e1e1e] transition-transform duration-300 group-hover:scale-105">
+              <img
+                src="/ss_logo_icon.svg"
+                alt=""
+                aria-hidden="true"
+                className="h-4/5 w-4/5 object-contain"
               />
             </div>
-            <span className="text-xl font-bold text-[#181A18] group-hover:text-teal-600 transition-colors font-heading tracking-tighter">
+            <span className="text-xl font-bold text-[#181A18] transition-colors group-hover:text-teal-600 font-heading tracking-tighter">
               SOLUTION STUDIO<span className="text-teal-500">.</span>
             </span>
           </Link>
