@@ -28,6 +28,28 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/site.webmanifest",
+  openGraph: {
+    title: "Solution Studio",
+    description: "Solution Studio delivers scalable software solutions for enterprises, startups, and e-commerce platforms in Bangladesh and globally.",
+    url: "https://solutionstudio.bd",
+    siteName: "Solution Studio",
+    images: [
+      {
+        url: "/icon-512.png",
+        width: 512,
+        height: 512,
+        alt: "Solution Studio Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Solution Studio",
+    description: "Solution Studio delivers scalable software solutions for enterprises, startups, and e-commerce platforms in Bangladesh and globally.",
+    images: ["/icon-512.png"],
+  },
 };
 
 export default function RootLayout({
@@ -35,11 +57,25 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Solution Studio",
+    "url": "https://solutionstudio.bd",
+    "logo": "https://solutionstudio.bd/icon-512.png",
+  };
+
   return (
     <html
       lang="en"
       className={`${plusJakartaSans.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-[#F9F9F9] text-[#181A18] selection:bg-teal-500/30 selection:text-teal-500" suppressHydrationWarning>
         <Security />
         <main className="min-h-screen">
