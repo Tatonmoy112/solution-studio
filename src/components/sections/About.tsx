@@ -14,12 +14,12 @@ export default function About() {
         {/* Section Header */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-teal-500 font-mono text-sm">02.</span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-normal font-heading">
+            <span className="text-[#013AFF] font-mono text-sm font-bold">02.</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-[#181A18] uppercase tracking-normal font-heading">
               {sectionTitle}
             </h2>
           </div>
-          <div className="w-20 h-1 bg-teal-500 rounded-full" />
+          <div className="w-20 h-1 bg-[#013AFF] rounded-full" />
         </div>
 
         {/* Two Column Layout */}
@@ -27,12 +27,12 @@ export default function About() {
           {/* Left Column: Heading, Paragraphs, Mission & Vision */}
           <div className="lg:col-span-7 space-y-12">
             <div className="space-y-6">
-              <h3 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight font-heading">
+              <h3 className="text-3xl sm:text-4xl font-extrabold text-[#181A18] leading-tight font-heading">
                 {questionTitle}
               </h3>
               <div className="space-y-4">
                 {descriptionParagraphs.map((para, i) => (
-                  <p key={i} className="text-slate-300 text-lg leading-relaxed font-light">
+                  <p key={i} className="text-[#4B514B] text-lg leading-relaxed font-light">
                     {para}
                   </p>
                 ))}
@@ -45,10 +45,10 @@ export default function About() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="tech-card p-6 rounded-2xl border border-white/5 bg-white/[0.01]"
+                className="tech-card p-6 rounded-2xl border border-black/10 bg-white"
               >
-                <span className="text-xs font-mono text-teal-500 uppercase tracking-widest block mb-3">{mission.title}</span>
-                <p className="text-slate-400 text-sm leading-relaxed">
+                <span className="text-xs font-mono text-[#013AFF] uppercase tracking-widest block mb-3 font-semibold">{mission.title}</span>
+                <p className="text-[#555C55] text-sm leading-relaxed">
                   {mission.description}
                 </p>
               </motion.div>
@@ -58,10 +58,10 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="tech-card p-6 rounded-2xl border border-white/5 bg-white/[0.01]"
+                className="tech-card p-6 rounded-2xl border border-black/10 bg-white"
               >
-                <span className="text-xs font-mono text-teal-500 uppercase tracking-widest block mb-3">{vision.title}</span>
-                <p className="text-slate-400 text-sm leading-relaxed">
+                <span className="text-xs font-mono text-[#013AFF] uppercase tracking-widest block mb-3 font-semibold">{vision.title}</span>
+                <p className="text-[#555C55] text-sm leading-relaxed">
                   {vision.description}
                 </p>
               </motion.div>
@@ -74,43 +74,43 @@ export default function About() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="relative p-8 md:p-10 rounded-3xl bg-gradient-to-br from-teal-950/20 to-transparent border border-teal-500/20 shadow-xl overflow-hidden"
+              className="relative p-8 md:p-10 rounded-3xl bg-white border border-[#00BBA7]/30 shadow-xl overflow-hidden"
             >
               {/* Decorative light overlay */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#00BBA7]/10 rounded-full blur-3xl pointer-events-none" />
 
               <div className="relative z-10 flex flex-col gap-6">
-                <span className="text-4xl text-teal-500/30 font-serif leading-none select-none">
+                <span className="text-4xl text-[#00BBA7]/40 font-serif leading-none select-none">
                   &ldquo;
                 </span>
 
                 <div className="space-y-4">
                   <div className="space-y-1">
-                    <p className="text-xs font-mono text-slate-500 uppercase tracking-widest">
+                    <p className="text-xs font-mono text-[#555C55] uppercase tracking-widest">
                       Most software companies ask:
                     </p>
-                    <p className="text-lg md:text-xl text-slate-400 italic">
+                    <p className="text-lg md:text-xl text-[#4B514B] italic">
                       &ldquo;{quoteBlock.question}&rdquo;
                     </p>
                   </div>
 
-                  <div className="w-10 h-px bg-teal-500/30 my-4" />
+                  <div className="w-10 h-px bg-[#00BBA7]/40 my-4" />
 
                   <div className="space-y-1">
-                    <p className="text-xs font-mono text-teal-500 uppercase tracking-widest">
+                    <p className="text-xs font-mono text-[#00BBA7] uppercase tracking-widest font-semibold">
                       We ask:
                     </p>
-                    <p className="text-2xl md:text-3xl font-extrabold text-white font-heading tracking-tight leading-tight">
+                    <p className="text-2xl md:text-3xl font-extrabold text-[#181A18] font-heading tracking-tight leading-tight">
                       &ldquo;{quoteBlock.answer}&rdquo;
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-4 flex flex-col gap-2 pt-6 border-t border-white/5">
-                  <p className="text-teal-500 font-extrabold font-heading text-lg tracking-tight">
+                <div className="mt-4 flex flex-col gap-2 pt-6 border-t border-black/10">
+                  <p className="text-[#00BBA7] font-extrabold font-heading text-lg tracking-tight">
                     That single shift changes everything.
                   </p>
-                  <p className="text-slate-500 text-xs uppercase tracking-widest font-mono">
+                  <p className="text-[#555C55] text-xs uppercase tracking-widest font-mono">
                     The Studio Philosophy
                   </p>
                 </div>

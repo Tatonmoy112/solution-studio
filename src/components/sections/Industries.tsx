@@ -26,13 +26,13 @@ export default function Industries() {
         {/* Section Header */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-teal-500 font-mono text-sm">05.</span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-normal font-heading">
+            <span className="text-[#013AFF] font-mono text-sm font-bold">05.</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-[#181A18] uppercase tracking-normal font-heading">
               {sectionTitle}
             </h2>
           </div>
-          <div className="w-20 h-1 bg-teal-500 rounded-full mb-6" />
-          <p className="text-slate-400 text-lg max-w-2xl font-light">
+          <div className="w-20 h-1 bg-[#013AFF] rounded-full mb-6" />
+          <p className="text-[#4B514B] text-lg max-w-2xl font-light">
             {subtitle}
           </p>
         </div>
@@ -48,16 +48,16 @@ export default function Industries() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="flex items-center gap-4 p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-teal-500/20 hover:bg-white/[0.03] transition-all group"
+                className="flex items-center gap-4 p-5 rounded-2xl bg-white border border-black/10 hover:border-[#00BBA7]/40 hover:shadow-lg transition-all group"
               >
-                <div className="p-3 bg-teal-500/10 text-teal-500 rounded-xl group-hover:scale-105 transition-transform duration-300">
+                <div className="p-3 bg-[#00BBA7]/10 text-[#00BBA7] rounded-xl group-hover:scale-105 transition-transform duration-300">
                   <IconComponent size={24} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-bold text-white mb-1 group-hover:text-teal-500 transition-colors font-heading truncate">
+                  <h3 className="text-lg font-bold text-[#181A18] mb-1 group-hover:text-[#00BBA7] transition-colors font-heading truncate">
                     {item.title}
                   </h3>
-                  <p className="text-slate-400 text-xs leading-relaxed font-light line-clamp-2">
+                  <p className="text-[#555C55] text-xs leading-relaxed font-light line-clamp-2">
                     {item.description}
                   </p>
                 </div>

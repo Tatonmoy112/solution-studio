@@ -16,7 +16,7 @@ const FIELD_LIMITS = {
 } as const;
 
 const fieldBaseClass =
-  "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500/30 transition-all text-sm";
+  "w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-[#181A18] placeholder-[#555C55] focus:outline-none focus:border-[#013AFF] focus:ring-1 focus:ring-[#013AFF]/30 transition-all text-sm";
 
 const fieldErrorClass =
   "border-red-400/60 focus:border-red-400 focus:ring-red-400/30";
@@ -157,20 +157,20 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 md:px-12 relative overflow-hidden bg-[#121212]">
+    <section id="contact" className="py-24 px-6 md:px-12 relative overflow-hidden">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/2 -right-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-[120px] -z-10 animate-pulse" />
+      <div className="absolute top-1/2 -right-1/4 w-96 h-96 bg-[#013AFF]/5 rounded-full blur-[120px] -z-10 animate-pulse" />
 
       <div className="container mx-auto max-w-[1550px] relative z-10">
         {/* Section Header */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-teal-500 font-mono text-sm">09.</span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-normal font-heading">
+            <span className="text-[#013AFF] font-mono text-sm font-bold">09.</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-[#181A18] uppercase tracking-normal font-heading">
               Contact
             </h2>
           </div>
-          <div className="w-20 h-1 bg-teal-500 rounded-full" />
+          <div className="w-20 h-1 bg-[#013AFF] rounded-full" />
         </div>
 
         {/* Redesigned Clean Grid Layout */}
@@ -183,27 +183,27 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5 space-y-6"
           >
-            <span className="text-teal-500 font-mono text-sm tracking-widest uppercase block">
+            <span className="text-[#013AFF] font-mono text-sm tracking-widest uppercase block font-semibold">
               Get In Touch
             </span>
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-tight font-heading">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#181A18] leading-tight tracking-tight font-heading">
               Ready to Build Something Exceptional?
             </h3>
-            <p className="text-slate-300 text-lg font-light leading-relaxed">
+            <p className="text-[#4B514B] text-lg font-light leading-relaxed">
               Have a problem you want to solve, a workflow you want to automate, or a custom system you want to kick off? 
             </p>
-            <p className="text-slate-400 text-base font-light leading-relaxed">
+            <p className="text-[#555C55] text-base font-light leading-relaxed">
               Drop us a message here. Our team will review your requirements and get back to you with a concrete strategy &mdash; not just a sales pitch.
             </p>
             
-            <div className="pt-8 border-t border-white/5 space-y-2">
-              <div className="flex justify-between text-xs font-mono text-slate-500 uppercase tracking-widest">
+            <div className="pt-8 border-t border-black/10 space-y-2">
+              <div className="flex justify-between text-xs font-mono text-[#555C55] uppercase tracking-widest">
                 <span>Response time</span>
-                <span className="text-teal-500 font-semibold">&lt; 24 hours</span>
+                <span className="text-[#00BBA7] font-bold">&lt; 24 hours</span>
               </div>
-              <div className="flex justify-between text-xs font-mono text-slate-500 uppercase tracking-widest">
+              <div className="flex justify-between text-xs font-mono text-[#555C55] uppercase tracking-widest">
                 <span>HQ Location</span>
-                <span className="text-white">Gazipur, Bangladesh</span>
+                <span className="text-[#181A18] font-semibold">Gazipur, Bangladesh</span>
               </div>
             </div>
           </motion.div>
@@ -214,10 +214,10 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-7 tech-card p-8 md:p-10 rounded-3xl bg-[#161616]/40 border border-white/5 shadow-2xl relative"
+            className="lg:col-span-7 tech-card p-8 md:p-10 rounded-3xl bg-white border border-black/10 shadow-2xl relative"
           >
             {/* Ambient glow in card background */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#013AFF]/5 rounded-full blur-3xl pointer-events-none" />
 
             <form onSubmit={handleSubmit} className="space-y-6 relative z-10" noValidate>
               <div
@@ -236,7 +236,7 @@ export default function Contact() {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-mono text-slate-400 uppercase tracking-widest">
+                  <label htmlFor="name" className="text-sm font-mono text-[#555C55] uppercase tracking-widest font-medium">
                     Name
                   </label>
                   <input 
@@ -255,13 +255,13 @@ export default function Contact() {
                     placeholder="Your Name"
                   />
                   {fieldErrors.name && (
-                    <p id="name-error" className="text-xs text-red-300" role="alert">
+                    <p id="name-error" className="text-xs text-red-500" role="alert">
                       {fieldErrors.name}
                     </p>
                   )}
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-mono text-slate-400 uppercase tracking-widest">
+                  <label htmlFor="email" className="text-sm font-mono text-[#555C55] uppercase tracking-widest font-medium">
                     Email
                   </label>
                   <input 
@@ -281,7 +281,7 @@ export default function Contact() {
                     placeholder="Email Address"
                   />
                   {fieldErrors.email && (
-                    <p id="email-error" className="text-xs text-red-300" role="alert">
+                    <p id="email-error" className="text-xs text-red-500" role="alert">
                       {fieldErrors.email}
                     </p>
                   )}
@@ -289,7 +289,7 @@ export default function Contact() {
               </div>
               
               <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-mono text-slate-400 uppercase tracking-widest">
+                <label htmlFor="subject" className="text-sm font-mono text-[#555C55] uppercase tracking-widest font-medium">
                   Subject
                 </label>
                 <input 
@@ -307,14 +307,14 @@ export default function Contact() {
                   placeholder="What is this regarding?"
                 />
                 {fieldErrors.subject && (
-                  <p id="subject-error" className="text-xs text-red-300" role="alert">
+                  <p id="subject-error" className="text-xs text-red-500" role="alert">
                     {fieldErrors.subject}
                   </p>
                 )}
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-mono text-slate-400 uppercase tracking-widest">
+                <label htmlFor="message" className="text-sm font-mono text-[#555C55] uppercase tracking-widest font-medium">
                   Message
                 </label>
                 <textarea 
@@ -332,7 +332,7 @@ export default function Contact() {
                   placeholder="Your message here..."
                 />
                 {fieldErrors.message && (
-                  <p id="message-error" className="text-xs text-red-300" role="alert">
+                  <p id="message-error" className="text-xs text-red-500" role="alert">
                     {fieldErrors.message}
                   </p>
                 )}
@@ -341,7 +341,7 @@ export default function Contact() {
               {errorMessage && (
                 <p
                   role="alert"
-                  className="text-sm text-red-300 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3"
+                  className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3"
                 >
                   {errorMessage}
                 </p>
@@ -350,7 +350,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 bg-teal-500 hover:bg-teal-600 disabled:bg-slate-700 text-[#121212] font-semibold uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2 group cursor-pointer hover:shadow-[0_8px_20px_rgba(20,184,166,0.3)]"
+                className="w-full py-4 bg-[#013AFF] hover:bg-[#002ecc] disabled:bg-slate-400 text-white font-semibold uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2 group cursor-pointer hover:shadow-[0_8px_20px_rgba(1,58,255,0.3)]"
               >
                 {isSubmitting ? "Sending..." : isSuccess ? "Message Sent!" : "Send Message"}
                 {!isSubmitting && !isSuccess && (

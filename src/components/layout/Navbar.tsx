@@ -44,18 +44,12 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between w-full">
           {/* Logo Left */}
-          <Link href="/" className="group flex items-center gap-3" aria-label="Solution Studio home">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-teal-500 bg-[#1e1e1e] transition-transform duration-300 group-hover:scale-105">
-              <img
-                src="/ss_logo_icon.svg"
-                alt=""
-                aria-hidden="true"
-                className="h-4/5 w-4/5 object-contain"
-              />
-            </div>
-            <span className="text-xl font-bold text-[#181A18] transition-colors group-hover:text-teal-600 font-heading tracking-tighter">
-              SOLUTION STUDIO<span className="text-teal-500">.</span>
-            </span>
+          <Link href="/" className="group flex items-center transition-transform duration-300 hover:scale-105" aria-label="Solution Studio home">
+            <img
+              src="/ss logo.png"
+              alt="Solution Studio"
+              className="h-9 md:h-10 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Nav Center */}
@@ -64,7 +58,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={getLinkHref(link.href)}
-                className="text-[#4B514B] hover:text-teal-600 transition-colors text-sm font-medium tracking-wide font-heading"
+                className="text-[#4B514B] hover:text-[#00BBA7] transition-colors text-sm font-medium tracking-wide font-heading"
               >
                 {link.name}
               </Link>
@@ -75,7 +69,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center">
             <Link
               href="#contact"
-              className="px-6 py-2.5 bg-teal-500 hover:bg-teal-600 text-[#121212] font-semibold text-sm uppercase tracking-wider rounded-full transition-all duration-300 hover:shadow-[0_0_15px_rgba(20,184,166,0.4)]"
+              className="px-6 py-2.5 bg-[#013AFF] hover:bg-[#002ecc] text-white font-semibold text-sm uppercase tracking-wider rounded-full transition-all duration-300 hover:shadow-[0_0_15px_rgba(1,58,255,0.4)]"
             >
               Let&apos;s Talk
             </Link>
@@ -83,7 +77,7 @@ export default function Navbar() {
 
           {/* Mobile Toggle */}
           <button
-            className="md:hidden flex h-10 w-10 items-center justify-center text-[#181A18] hover:text-teal-600 transition-colors cursor-pointer"
+            className="md:hidden flex h-10 w-10 items-center justify-center text-[#181A18] hover:text-[#00BBA7] transition-colors cursor-pointer"
             onClick={() => setMobileMenuOpen((open) => !open)}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
@@ -122,7 +116,7 @@ export default function Navbar() {
                     key={link.name}
                     href={getLinkHref(link.href)}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-[#4B514B] hover:text-teal-600 transition-colors text-base font-medium w-full text-center py-3 font-heading border-b border-black/10 last:border-b-0"
+                    className="text-[#4B514B] hover:text-[#00BBA7] transition-colors text-base font-medium w-full text-center py-3 font-heading border-b border-black/10 last:border-b-0"
                   >
                     {link.name}
                   </Link>
@@ -130,7 +124,7 @@ export default function Navbar() {
                 <Link
                   href="#contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center py-3 bg-teal-500 hover:bg-teal-600 text-[#121212] font-semibold text-sm uppercase tracking-wider rounded-full mt-2 transition-all"
+                  className="w-full text-center py-3 bg-[#013AFF] hover:bg-[#002ecc] text-white font-semibold text-sm uppercase tracking-wider rounded-full mt-2 transition-all"
                 >
                   Let&apos;s Talk
                 </Link>

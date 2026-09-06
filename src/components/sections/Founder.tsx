@@ -16,12 +16,12 @@ export default function Founder() {
         {/* Section Header */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-teal-500 font-mono text-sm">08.</span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-normal font-heading">
+            <span className="text-[#013AFF] font-mono text-sm font-bold">08.</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-[#181A18] uppercase tracking-normal font-heading">
               {sectionTitle}
             </h2>
           </div>
-          <div className="w-20 h-1 bg-teal-500 rounded-full" />
+          <div className="w-20 h-1 bg-[#013AFF] rounded-full" />
         </div>
 
         {/* Redesigned Premium Editorial Layout */}
@@ -35,20 +35,20 @@ export default function Founder() {
             className="lg:col-span-4 space-y-6 lg:sticky lg:top-32"
           >
             <div className="space-y-3">
-              <span className="text-teal-500 font-mono text-xs uppercase tracking-widest block">
+              <span className="text-[#013AFF] font-mono text-xs uppercase tracking-widest block font-semibold">
                 {"// Message from Leadership"}
               </span>
-              <h3 className="text-3xl md:text-4xl font-extrabold text-white leading-tight font-heading">
+              <h3 className="text-3xl md:text-4xl font-extrabold text-[#181A18] leading-tight font-heading">
                 {name}
               </h3>
-              <p className="text-teal-500 font-mono text-sm tracking-wider uppercase font-semibold">
+              <p className="text-[#013AFF] font-mono text-sm tracking-wider uppercase font-semibold">
                 {role}
               </p>
             </div>
             
-            <div className="h-[2px] w-16 bg-teal-500/30" />
+            <div className="h-[2px] w-16 bg-[#013AFF]/30" />
             
-            <div className="text-slate-500 text-xs font-mono uppercase tracking-widest space-y-1">
+            <div className="text-[#555C55] text-xs font-mono uppercase tracking-widest space-y-1">
               <p>Solution Studio Bangladesh</p>
               <p>Authentic &bull; Outcome-driven</p>
             </div>
@@ -60,14 +60,14 @@ export default function Founder() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-8 relative space-y-8 pl-4 lg:pl-8"
+            className="lg:col-span-8 relative space-y-8 pl-4 lg:pl-8 p-8 md:p-10 rounded-3xl bg-white border border-black/10 shadow-sm"
           >
             {/* Elegant large quote icon watermark behind text */}
-            <span className="absolute -top-16 -left-6 md:-left-12 text-[10rem] font-serif text-teal-500/5 select-none leading-none pointer-events-none">
+            <span className="absolute -top-10 -left-4 text-[9rem] font-serif text-[#013AFF]/10 select-none leading-none pointer-events-none">
               &ldquo;
             </span>
 
-            <div className="space-y-6 text-slate-300 text-lg md:text-xl leading-relaxed font-light relative z-10">
+            <div className="space-y-6 text-[#181A18] text-lg md:text-xl leading-relaxed font-medium relative z-10 font-heading">
               {messageLines.map((line, idx) => (
                 <p key={idx} className="relative">
                   {line}

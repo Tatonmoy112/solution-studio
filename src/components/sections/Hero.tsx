@@ -28,35 +28,35 @@ export default function Hero() {
           className="lg:col-span-7 flex flex-col justify-center text-left"
         >
           <div className="inline-flex items-center gap-3 mb-6">
-            <span className="text-teal-500 font-mono text-sm tracking-widest uppercase">
+            <span className="text-[#013AFF] font-mono text-sm tracking-widest uppercase font-semibold">
               Bangladesh Growth Partner
             </span>
-            <div className="w-12 h-px bg-teal-500/30" />
+            <div className="w-12 h-px bg-[#013AFF]/40" />
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter text-white font-heading mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter text-[#181A18] font-heading mb-6">
             Your Business Problems Deserve{" "}
-            <span className="text-teal-500 drop-shadow-[0_0_15px_rgba(20,184,166,0.25)]">
+            <span className="text-[#013AFF]">
               Real Solutions
             </span>{" "}
             — Not Just Code
           </h1>
 
-          <p className="text-lg md:text-xl text-slate-400 font-normal leading-relaxed mb-10 max-w-2xl">
+          <p className="text-lg md:text-xl text-[#4B514B] font-normal leading-relaxed mb-10 max-w-2xl">
             {heroContent.subheadline}
           </p>
 
           <div className="flex flex-wrap gap-4">
             <a
               href={talkBtn.href}
-              className="px-8 py-4 bg-teal-500 hover:bg-teal-600 text-[#121212] font-semibold text-base uppercase tracking-wider rounded-full transition-all duration-300 hover:translate-y-[-2px] hover:shadow-[0_10px_20px_rgba(20,184,166,0.3)] flex items-center gap-2 group"
+              className="px-8 py-4 bg-[#013AFF] hover:bg-[#002ecc] text-white font-semibold text-base uppercase tracking-wider rounded-full transition-all duration-300 hover:translate-y-[-2px] hover:shadow-[0_10px_20px_rgba(1,58,255,0.3)] flex items-center gap-2 group"
             >
               {talkBtn.text}
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href={seeBtn.href}
-              className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-teal-500/50 font-semibold text-base uppercase tracking-wider rounded-full transition-all duration-300 hover:translate-y-[-2px] flex items-center gap-2 group"
+              className="px-8 py-4 bg-[#00BBA7]/10 hover:bg-[#00BBA7] text-[#00BBA7] hover:text-white border-2 border-[#00BBA7] font-bold text-base uppercase tracking-wider rounded-full transition-all duration-300 hover:translate-y-[-2px] flex items-center gap-2 group"
             >
               {seeBtn.text}
               <Eye size={18} className="group-hover:opacity-80 transition-opacity" />
@@ -73,52 +73,52 @@ export default function Hero() {
         >
           <div className="relative w-full max-w-[400px] aspect-square">
             {/* Background ambient glow behind details */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/20 to-teal-700/5 rounded-3xl rotate-6 blur-md -z-10 scale-95" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#00BBA7]/15 to-[#00BBA7]/5 rounded-3xl rotate-6 blur-md -z-10 scale-95" />
             
             {/* Outer border shape */}
-            <div className="absolute inset-0 border border-teal-500/20 rounded-3xl rotate-12 transition-transform duration-700 hover:rotate-6" />
+            <div className="absolute inset-0 border border-[#00BBA7]/20 rounded-3xl rotate-12 transition-transform duration-700 hover:rotate-6" />
 
             {/* Main glass panel */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/5 rounded-3xl backdrop-blur-2xl flex flex-col justify-center items-center p-8 overflow-hidden shadow-2xl">
+            <div className="absolute inset-0 bg-white/80 border border-black/10 rounded-3xl backdrop-blur-2xl flex flex-col justify-center items-center p-8 overflow-hidden shadow-2xl">
               {/* Dynamic abstract artwork representing "System" */}
               <div className="relative w-full h-full flex flex-col justify-between">
                 <div className="flex justify-between items-center">
-                  <div className="w-3 h-3 rounded-full bg-teal-500/80 shadow-[0_0_8px_var(--accent)]" />
-                  <div className="h-px flex-1 bg-gradient-to-r from-teal-500/50 to-transparent mx-4" />
-                  <span className="text-xs font-mono text-slate-500 uppercase tracking-widest">
+                  <div className="w-3 h-3 rounded-full bg-[#00BBA7] shadow-[0_0_8px_#00BBA7]" />
+                  <div className="h-px flex-1 bg-gradient-to-r from-[#00BBA7]/50 to-transparent mx-4" />
+                  <span className="text-xs font-mono text-[#00BBA7] uppercase tracking-widest font-semibold">
                     SYSTEM OK
                   </span>
                 </div>
 
                 <div className="my-auto space-y-6">
                   {/* Floating abstract code and connections */}
-                  <div className="h-2 w-3/4 bg-teal-500/30 rounded-full" />
-                  <div className="h-2 w-1/2 bg-white/10 rounded-full" />
-                  <div className="relative pl-6 border-l-2 border-teal-500/40">
-                    <div className="text-teal-500 font-mono text-xs mb-1">&gt; ANALYZING OUTCOME</div>
-                    <div className="text-white text-2xl font-extrabold tracking-tighter">
+                  <div className="h-2 w-3/4 bg-[#00BBA7]/20 rounded-full" />
+                  <div className="h-2 w-1/2 bg-black/10 rounded-full" />
+                  <div className="relative pl-6 border-l-2 border-[#00BBA7]">
+                    <div className="text-[#00BBA7] font-mono text-xs mb-1 font-semibold">&gt; ANALYZING OUTCOME</div>
+                    <div className="text-[#181A18] text-2xl font-extrabold tracking-tighter">
                       OUTCOME &gt; OUTPUT
                     </div>
                   </div>
-                  <div className="h-2 w-2/3 bg-white/5 rounded-full" />
+                  <div className="h-2 w-2/3 bg-black/5 rounded-full" />
                 </div>
 
                 <div className="flex justify-between items-end">
-                  <span className="text-[10px] font-mono text-slate-600">
+                  <span className="text-[10px] font-mono text-[#555C55]">
                     LATENCY: 0ms
                   </span>
                   <div className="flex gap-2">
-                    <div className="w-1.5 h-1.5 bg-teal-500/30 rounded-full" />
-                    <div className="w-1.5 h-1.5 bg-teal-500/50 rounded-full" />
-                    <div className="w-1.5 h-1.5 bg-teal-500 rounded-full" />
+                    <div className="w-1.5 h-1.5 bg-[#00BBA7]/30 rounded-full" />
+                    <div className="w-1.5 h-1.5 bg-[#00BBA7]/60 rounded-full" />
+                    <div className="w-1.5 h-1.5 bg-[#00BBA7] rounded-full" />
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Ambient small corner brackets */}
-            <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-teal-500/40 rounded-tl-xl" />
-            <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-teal-500/40 rounded-br-xl" />
+            <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-[#00BBA7]/40 rounded-tl-xl" />
+            <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-[#00BBA7]/40 rounded-br-xl" />
           </div>
         </motion.div>
       </div>

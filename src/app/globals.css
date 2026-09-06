@@ -4,14 +4,18 @@
   --font-sans: var(--font-sans);
   --font-heading: var(--font-sans);
   --font-mono: Courier, monospace;
+  --color-brand-primary: #013aff;
+  --color-brand-secondary: #00bba7;
 }
 
 @layer base {
   :root {
     --background: #f9f9f9;
     --foreground: #181a18;
-    --accent: #14b8a6; /* Vibrant Teal */
-    --accent-hover: #0d9488;
+    --accent: #013aff; /* Primary Accent: Electric Royal Blue */
+    --accent-hover: #002ecc;
+    --accent-teal: #00bba7; /* Secondary Accent: Mint Teal */
+    --accent-teal-hover: #009988;
     --muted: #eef0ee;
     --border: rgba(24, 26, 24, 0.1);
   }
@@ -70,7 +74,19 @@
   .tech-card:hover {
     background: #ffffff;
     border-color: var(--accent);
-    box-shadow: 0 0 30px rgba(20, 184, 166, 0.1);
+    box-shadow: 0 0 30px rgba(0, 187, 167, 0.12);
+  }
+
+  .tech-card-secondary {
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(24, 26, 24, 0.08);
+    transition: all 0.3s ease;
+  }
+
+  .tech-card-secondary:hover {
+    background: #ffffff;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 30px rgba(1, 58, 255, 0.12);
   }
 
   .glass-card {
@@ -82,7 +98,19 @@
 
   .glass-card:hover {
     border-color: var(--accent);
-    box-shadow: 0 0 20px rgba(20, 184, 166, 0.1);
+    box-shadow: 0 0 20px rgba(0, 187, 167, 0.12);
+  }
+
+  .glass-card-secondary {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(24, 26, 24, 0.08);
+    transition: all 0.3s ease;
+  }
+
+  .glass-card-secondary:hover {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 20px rgba(1, 58, 255, 0.12);
   }
 
   .section-number {
@@ -90,16 +118,17 @@
     color: var(--accent);
     margin-right: 0.75rem;
   }
+
+  .section-number-secondary {
+    font-family: var(--font-mono);
+    color: var(--accent-blue);
+    margin-right: 0.75rem;
+  }
 }
 
 @layer utilities {
   section {
     background-color: #f9f9f9 !important;
-    color: #181a18 !important;
-  }
-
-  main .text-white,
-  main [class*="text-slate-"] {
     color: #181a18 !important;
   }
 

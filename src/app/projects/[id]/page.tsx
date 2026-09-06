@@ -53,7 +53,7 @@ export default function ProjectDetails() {
         href={project.demo} 
         target="_blank" 
         rel="noreferrer" 
-        className="px-8 py-4 bg-teal-500 hover:bg-teal-600 text-[#121212] font-black uppercase tracking-widest transition-all flex items-center gap-2"
+        className="px-8 py-4 bg-[#013AFF] hover:bg-[#002ecc] text-white font-black uppercase tracking-widest transition-all rounded-full flex items-center gap-2 shadow-lg"
       >
         Live Demo <ExternalLink size={18} />
       </a>
@@ -69,7 +69,7 @@ export default function ProjectDetails() {
           {/* Back Button */}
           <button 
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-slate-500 hover:text-teal-500 transition-colors mb-12 font-mono uppercase tracking-widest text-sm"
+            className="flex items-center gap-2 text-[#555C55] hover:text-[#00BBA7] transition-colors mb-12 font-mono uppercase tracking-widest text-sm cursor-pointer"
           >
             <ArrowLeft size={16} />
             Back to Home
@@ -79,11 +79,11 @@ export default function ProjectDetails() {
           <div className="grid md:grid-cols-2 gap-12 items-start mb-20">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-teal-500 font-mono text-sm tracking-widest uppercase">Project Overview</span>
-                <div className="w-12 h-px bg-teal-500/30"></div>
+                <span className="text-[#013AFF] font-mono text-sm tracking-widest uppercase font-semibold">Project Overview</span>
+                <div className="w-12 h-px bg-[#013AFF]/30"></div>
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-8 tracking-tighter uppercase">{project.title}</h1>
-              <p className="text-xl text-slate-400 leading-relaxed mb-10 font-light">
+              <h1 className="text-4xl md:text-6xl font-bold mb-8 tracking-tighter uppercase font-heading">{project.title}</h1>
+              <p className="text-xl text-[#4B514B] leading-relaxed mb-10 font-light">
                 {project.fullDescription}
               </p>
               
@@ -92,7 +92,7 @@ export default function ProjectDetails() {
               </div>
             </div>
 
-            <div className="tech-card rounded-2xl overflow-hidden border border-white/5">
+            <div className="tech-card rounded-2xl overflow-hidden border border-black/10 shadow-lg">
               <img 
                 src={project.image} 
                 alt={project.title} 
@@ -106,15 +106,15 @@ export default function ProjectDetails() {
             {/* Features */}
             <div>
               <div className="flex items-center gap-3 mb-8">
-                <div className="p-2 bg-teal-500/10 rounded-lg text-teal-500">
+                <div className="p-2 bg-[#00BBA7]/10 rounded-lg text-[#00BBA7]">
                   <CheckCircle2 size={24} />
                 </div>
-                <h2 className="text-2xl font-bold uppercase tracking-tight">Key Features</h2>
+                <h2 className="text-2xl font-bold uppercase tracking-tight font-heading">Key Features</h2>
               </div>
               <ul className="space-y-4">
                 {project.features.map((feature, i) => (
-                  <li key={i} className="flex gap-3 text-slate-400 leading-relaxed">
-                    <span className="text-teal-500 font-mono mt-1">▸</span>
+                  <li key={i} className="flex gap-3 text-[#4B514B] leading-relaxed">
+                    <span className="text-[#00BBA7] font-mono mt-1 font-bold">▸</span>
                     {feature}
                   </li>
                 ))}
@@ -124,15 +124,15 @@ export default function ProjectDetails() {
             {/* Challenges & Solutions */}
             <div>
               <div className="flex items-center gap-3 mb-8">
-                <div className="p-2 bg-teal-500/10 rounded-lg text-teal-500">
+                <div className="p-2 bg-[#00BBA7]/10 rounded-lg text-[#00BBA7]">
                   <Trophy size={24} />
                 </div>
-                <h2 className="text-2xl font-bold uppercase tracking-tight">Core Challenges</h2>
+                <h2 className="text-2xl font-bold uppercase tracking-tight font-heading">Core Challenges</h2>
               </div>
               <ul className="space-y-4">
                 {project.challenges.map((challenge, i) => (
-                  <li key={i} className="flex gap-3 text-slate-400 leading-relaxed">
-                    <span className="text-teal-500 font-mono mt-1">▸</span>
+                  <li key={i} className="flex gap-3 text-[#4B514B] leading-relaxed">
+                    <span className="text-[#00BBA7] font-mono mt-1 font-bold">▸</span>
                     {challenge}
                   </li>
                 ))}
@@ -141,30 +141,30 @@ export default function ProjectDetails() {
           </div>
 
           {/* Benefits Section */}
-          <div className="mt-16 tech-card p-12 rounded-3xl border border-white/5 bg-white/[0.01]">
+          <div className="mt-16 tech-card p-12 rounded-3xl border border-black/10 bg-white shadow-md">
             <div className="flex items-center gap-3 mb-10 justify-center">
-              <div className="w-12 h-px bg-teal-500/30"></div>
-              <h2 className="text-3xl font-bold uppercase tracking-tight text-center">Project Benefits</h2>
-              <div className="w-12 h-px bg-teal-500/30"></div>
+              <div className="w-12 h-px bg-[#013AFF]/40"></div>
+              <h2 className="text-3xl font-bold uppercase tracking-tight text-center font-heading">Project Benefits</h2>
+              <div className="w-12 h-px bg-[#013AFF]/40"></div>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {project.benefits.map((benefit, i) => (
-                <div key={i} className="flex flex-col gap-3 p-6 bg-white/[0.02] border border-white/5 rounded-2xl hover:border-teal-500/30 transition-all">
-                  <span className="text-teal-500 font-mono text-xl">0{i+1}.</span>
-                  <p className="text-slate-300 leading-relaxed font-medium">{benefit}</p>
+                <div key={i} className="flex flex-col gap-3 p-6 bg-[#F9F9F9] border border-black/10 rounded-2xl hover:border-[#013AFF]/40 transition-all">
+                  <span className="text-[#013AFF] font-mono text-xl font-bold">0{i+1}.</span>
+                  <p className="text-[#181A18] leading-relaxed font-medium">{benefit}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Tech Stack Footer */}
-          <div className="mt-24 pt-12 border-t border-white/5">
-            <h3 className="text-sm font-mono text-slate-500 uppercase tracking-[0.3em] mb-8 text-center">Built With</h3>
+          <div className="mt-24 pt-12 border-t border-black/10">
+            <h3 className="text-sm font-mono text-[#555C55] uppercase tracking-[0.3em] mb-8 text-center font-semibold">Built With</h3>
             <div className="flex flex-wrap justify-center gap-4">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-6 py-3 bg-white/5 border border-white/10 text-white font-mono uppercase tracking-widest text-xs rounded-full hover:border-teal-500 transition-colors"
+                  className="px-6 py-3 bg-[#00BBA7]/10 border border-[#00BBA7]/20 text-[#00BBA7] font-mono uppercase tracking-widest text-xs rounded-full hover:bg-[#00BBA7] hover:text-white transition-colors font-semibold"
                 >
                   {tag}
                 </span>

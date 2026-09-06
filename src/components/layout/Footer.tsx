@@ -58,17 +58,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Logo & Tagline */}
           <div className="flex flex-col gap-4">
-            <Link href="/" className="flex items-center gap-3 w-fit">
-              <div className="w-8 h-8 rounded-full border border-teal-500 overflow-hidden bg-[#1e1e1e] flex items-center justify-center">
-                <img 
-                  src="/logo.png" 
-                  alt="Solution Studio Logo" 
-                  className="w-4/5 h-4/5 object-contain" 
-                />
-              </div>
-              <span className="text-xl font-bold text-[#181A18] font-heading tracking-tighter">
-                SOLUTION STUDIO<span className="text-teal-500">.</span>
-              </span>
+            <Link href="/" className="flex items-center w-fit transition-transform duration-300 hover:scale-105" aria-label="Solution Studio home">
+              <img 
+                src="/ss logo.png" 
+                alt="Solution Studio" 
+                className="h-10 md:h-12 w-auto object-contain" 
+              />
             </Link>
             <p className="text-[#343934] text-lg font-medium leading-relaxed font-heading mt-2">
               &ldquo;{footerContent.tagline}&rdquo;
@@ -86,7 +81,7 @@ export default function Footer() {
                 <Link
                   key={link.name}
                   href={`/${link.href}`}
-                  className="text-[#4B514B] hover:text-teal-600 text-sm transition-colors"
+                  className="text-[#4B514B] hover:text-[#00BBA7] text-sm transition-colors"
                 >
                   {link.name}
                 </Link>
@@ -99,19 +94,19 @@ export default function Footer() {
             <h4 className="text-sm font-bold text-[#181A18] font-heading tracking-wider uppercase">Contact Us</h4>
             <ul className="space-y-3 text-sm text-[#4B514B]">
               <li className="flex items-center gap-3">
-                <Mail size={16} className="text-teal-500 shrink-0" />
-                <a href={`mailto:${contactInfo.email}`} className="hover:text-teal-600 transition-colors break-all">
+                <Mail size={16} className="text-[#00BBA7] shrink-0" />
+                <a href={`mailto:${contactInfo.email}`} className="hover:text-[#00BBA7] transition-colors break-all">
                   {contactInfo.email}
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Phone size={16} className="text-teal-500 shrink-0" />
-                <a href={`tel:${contactInfo.phone.replace(/\s+/g, '')}`} className="hover:text-teal-600 transition-colors">
+                <Phone size={16} className="text-[#00BBA7] shrink-0" />
+                <a href={`tel:${contactInfo.phone.replace(/\s+/g, '')}`} className="hover:text-[#00BBA7] transition-colors">
                   {contactInfo.phone}
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin size={16} className="text-teal-500 shrink-0 mt-0.5" />
+                <MapPin size={16} className="text-[#00BBA7] shrink-0 mt-0.5" />
                 <span>
                   {contactInfo.address.join(", ")}
                 </span>
@@ -130,7 +125,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => handleSocialClick(e, social.name)}
-                  className="text-[#4B514B] hover:text-teal-600 transition-colors text-sm font-medium font-heading cursor-pointer"
+                  className="text-[#4B514B] hover:text-[#00BBA7] transition-colors text-sm font-medium font-heading cursor-pointer"
                 >
                   {social.name}
                 </a>
