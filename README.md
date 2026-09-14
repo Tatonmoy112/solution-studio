@@ -1,89 +1,36 @@
-# 🪐 Solution Studio
+# Solution Studio
 
-> **Enterprise Software Engineering & Custom ERP Architectures**
-> Scaling businesses through premium web platforms, cross-platform mobile apps, and robust backend integrations.
+Frontend scaffold for rebuilding the site from the local design references.
 
----
+## Current status
 
-## 🌐 Overview
+The repository contains an existing starter home page, root layout, global stylesheet, and application icons. Other source files are empty placeholders for manual implementation. The structure is organized for reuse, but the designed pages, forms, data access, SEO helpers, and feedback components are not implemented.
 
-This is the official corporate showcase and portfolio site for **Solution Studio**. Built using a state-of-the-art Next.js architecture, Tailwind CSS, and Framer Motion, it presents the agency's core services, advanced technology stack, active client timelines, and case study portfolio in a high-fidelity, high-contrast visual system.
+The `figma/` directory contains 14 PNG exports, not an editable Figma document. Export names and visual contents do not always agree. See the [page map](docs/PAGE_MAP.md).
 
----
+## Project organization
 
-## 🛠️ Technology Stack
+- `src/app/`: route entry points, root layout, global stylesheet, and application icons.
+- `src/components/`: generic UI, site layout, reusable sections, and structured-data placeholder.
+- `src/features/`: feature components, content placeholders, domain types, and form schemas.
+- `src/config/`: site information and navigation placeholders.
+- `src/hooks/`: reusable browser-interaction hooks.
+- `src/lib/`: class-name and metadata helpers.
+- `src/styles/`: design tokens, typography, animation, and long-form content styles.
+- `public/images/`: brand assets and empty image folders for future content.
+- `figma/`: original design exports.
+- `docs/`: architecture and implementation context, relocated from the former context folder.
 
-* **Core Framework**: [Next.js](https://nextjs.org/) (App Router & Static Generation)
-* **Language**: [TypeScript](https://www.typescriptlang.org/) (Strictly Typed)
-* **Styling**: [Tailwind CSS](https://tailwindcss.com/) & Vanilla Custom CSS Tokens
-* **Animations**: [Framer Motion](https://www.framer.com/motion/) (Micro-interactions, smooth scroll triggers)
-* **Icons**: [Lucide React](https://lucide.dev/)
-* **Integrations**: [Supabase](https://supabase.com/) (Server-side contact lead capture)
+Start with the [documentation index](docs/README.md), [architecture](docs/ARCHITECTURE.md), and [component inventory](docs/COMPONENT_INVENTORY.md).
 
----
+## Tooling
 
-## 📁 Repository Structure
+The package manifest declares Next.js 16, React 19, TypeScript, Tailwind CSS 4, and ESLint. See `package.json` and `package-lock.json` for dependency declarations and locked versions. An installed dependency does not establish a working integration.
 
-```bash
-├── public/                     # High-fidelity static assets (brochures, logos, screenshots)
-│   ├── projects/               # Client project presentation mockups
-│   ├── logo.png                # Corporate brand logo
-│   └── solution-studio-brochure.pdf  # Solution Studio PDF brochure
-├── src/
-│   ├── app/                    # Next.js App Router (Layouts & Pages)
-│   │   ├── page.tsx            # Main Interactive B2B Corporate Showcase
-│   │   ├── globals.css         # Foundational CSS design system tokens
-│   │   └── projects/           # Dynamic project routes & deep details layouts
-│   ├── components/             # Reusable interactive components
-│   │   ├── Navbar.tsx          # Adaptive navigational banner
-│   │   ├── Hero.tsx            # Corporate introduction & dynamic CTAs
-│   │   ├── About.tsx           # Agency timeline & development philosophy
-│   │   ├── Experience.tsx      # Comprehensive Services & Expertise breakdown
-│   │   ├── Skills.tsx          # Grouped technology stacks matrix cards
-│   │   ├── Projects.tsx        # High-contrast Client Case Studies grid
-│   │   ├── Contact.tsx         # Secure email contact intakes
-│   │   └── Footer.tsx          # Minimalist copyright banner
-│   └── data/
-│       └── projects.ts         # Centralized, proprietary client project database
-```
+Existing scripts are `npm run dev`, `npm run build`, `npm run start`, and `npm run lint`. The start script requires a successful build. Empty framework entry points still need valid implementations before build readiness can be assessed.
 
----
+No backend setup or migration is required for this structure-only stage. Environment values should be configured when the corresponding integration is implemented; keep local secrets out of documentation.
 
-## 🚀 Running Locally
+## Working agreement
 
-### 1. Prerequisites
-Ensure you have [Node.js](https://nodejs.org/) installed (v18+ recommended).
-
-### 2. Install Dependencies
-```bash
-npm install
-```
-
-### 3. Setup Environment Variables
-Create a `.env.local` file in the root directory:
-```env
-SUPABASE_URL="https://your-project-ref.supabase.co"
-SUPABASE_SERVICE_ROLE_KEY="your-service-role-key"
-
-RESEND_API_KEY="your_resend_api_key"
-LEAD_NOTIFICATION_EMAIL="your_receiving_email@gmail.com"
-LEAD_NOTIFICATION_FROM="Solution Studio <contact@solutionstudio.bd>"
-```
-Run `supabase/migrations/0001_create_leads_table.sql` in the Supabase SQL Editor before testing submissions.
-
-### 4. Launch Development Server
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) to view the live dashboard.
-
-### 5. Build for Production
-To verify and generate a highly optimized static bundle:
-```bash
-npm run build
-```
-
----
-
-## 🛡️ License & Privacy
-All code, assets, and project data are proprietary intellectual property of **Solution Studio**. Distribution, cloning, or public hosting of these case studies is strictly restricted.
+Implement pages manually using the shared component and typography conventions. All newly scaffolded source files are intentionally empty. Documentation contains descriptions, not component implementations. Existing starter code and configuration have been preserved.
