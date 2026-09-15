@@ -1,15 +1,46 @@
 @import "tailwindcss";
 
+@theme inline {
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-manrope);
+  --font-accent: var(--font-saira);
+  --font-mono: var(--font-space-mono);
+
+  --color-background: #ffffff;
+  --color-foreground: #102238;
+  --color-brand: #006fba;
+  --color-brand-strong: #005b9a;
+  --color-brand-soft: #eaf5fc;
+  --color-nav-border: #e7ebf0;
+  --color-surface: #f5f7f9;
+  --color-surface-strong: #e8edf2;
+  --color-muted: #5f6c7c;
+  --color-action: #111315;
+}
+
 @layer base {
-  :root {
-    --background: #ffffff;
-    --foreground: #0f172a;
+  html {
+    background: var(--color-background);
   }
 
   body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@keyframes horizontal-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
   }
 }

@@ -1,10 +1,27 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Manrope, Saira, Space_Mono } from "next/font/google";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-manrope",
+  display: "swap",
+});
+
+const saira = Saira({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-saira",
+  display: "swap",
+});
+
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -18,9 +35,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="antialiased min-h-screen flex flex-col bg-white text-slate-900">
-        {children}
+    <html
+      lang="en"
+      className={`${manrope.variable} ${saira.variable} ${spaceMono.variable}`}
+    >
+      <body className="flex min-h-dvh flex-col bg-background font-sans text-foreground antialiased">
+        <Navbar />
+        <div className="flex min-h-0 flex-1 flex-col">{children}</div>
+        <Footer />
       </body>
     </html>
   );

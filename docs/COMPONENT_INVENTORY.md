@@ -1,10 +1,8 @@
-# Component and supporting-file inventory
+﻿# Component and supporting-file inventory
 
 ## Status
 
-Every source file listed below is an empty placeholder. Names establish ownership for future implementation. Existing route files and starter code are described in [PAGE_MAP.md](PAGE_MAP.md) and [ARCHITECTURE.md](ARCHITECTURE.md).
-
-No component exports, props, CSS classes, schemas, or hook behavior have been implemented.
+Most files listed below remain empty placeholders. Implemented shared foundation files are marked **implemented**. Existing route files and starter code are described in [PAGE_MAP.md](PAGE_MAP.md) and [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Reusable components and supporting files
 
@@ -13,9 +11,9 @@ No component exports, props, CSS classes, schemas, or hook behavior have been im
 - `src/components/ui/accordion/Accordion.tsx`
 - `src/components/ui/avatar/Avatar.tsx`
 - `src/components/ui/badge/Badge.tsx`
-- `src/components/ui/button/Button.tsx`
-- `src/components/ui/button/IconButton.tsx`
-- `src/components/ui/card/Card.tsx`
+- `src/components/ui/button/Button.tsx` Ã¢â‚¬â€ **implemented**
+- `src/components/ui/button/IconButton.tsx` Ã¢â‚¬â€ **implemented**
+- `src/components/ui/card/Card.tsx` Ã¢â‚¬â€ **implemented**
 - `src/components/ui/drawer/Drawer.tsx`
 - `src/components/ui/form/Checkbox.tsx`
 - `src/components/ui/form/FormField.tsx`
@@ -32,28 +30,44 @@ No component exports, props, CSS classes, schemas, or hook behavior have been im
 - `src/components/ui/toast/Toast.tsx`
 - `src/components/ui/toast/useToast.ts`
 - `src/components/ui/tooltip/Tooltip.tsx`
-- `src/components/ui/typography/Eyebrow.tsx`
-- `src/components/ui/typography/Heading.tsx`
-- `src/components/ui/typography/Text.tsx`
+- `src/components/ui/typography/Eyebrow.tsx` Ã¢â‚¬â€ **implemented**
+- `src/components/ui/typography/Heading.tsx` Ã¢â‚¬â€ **implemented**
+- `src/components/ui/typography/Text.tsx` Ã¢â‚¬â€ **implemented**
 
 ### src/components/layout/
 
-- `src/components/layout/Container.tsx`
-- `src/components/layout/Footer.tsx`
-- `src/components/layout/MobileNavigation.tsx`
-- `src/components/layout/Navbar.tsx`
+- `src/components/layout/Container.tsx` â€” **implemented**
+- `src/components/layout/Footer.tsx` — **implemented**
+- `src/components/layout/MobileNavigation.tsx` â€” **implemented**
+- `src/components/layout/Navbar.tsx` â€” **implemented**
 - `src/components/layout/Section.tsx`
 - `src/components/layout/SkipLink.tsx`
+
+### src/components/layout/navbar/
+
+- `src/components/layout/navbar/AboutMegaMenu.tsx` â€” **implemented**
+- `src/components/layout/navbar/DesktopNavigation.tsx` â€” **implemented**
+- `src/components/layout/navbar/NavbarActions.tsx` â€” **implemented**
+- `src/components/layout/navbar/NavLink.tsx` â€” **implemented**
+
+### src/components/layout/footer/
+
+- `src/components/layout/footer/FooterAffiliations.tsx` — **implemented**
+- `src/components/layout/footer/FooterBackground.tsx` — **implemented**
+- `src/components/layout/footer/FooterLeadForm.tsx` — **implemented**
+- `src/components/layout/footer/FooterLinkGroup.tsx` — **implemented**
+- `src/components/layout/footer/FooterSocialLinks.tsx` — **implemented**
 
 ### src/components/shared/
 
 - `src/components/shared/Breadcrumbs.tsx`
 - `src/components/shared/CTASection.tsx`
 - `src/components/shared/CategoryFilter.tsx`
-- `src/components/shared/ClientLogos.tsx`
+- `src/components/shared/ClientLogos.tsx` Ã¢â‚¬â€ **implemented**
 - `src/components/shared/FAQSection.tsx`
 - `src/components/shared/NewsletterSection.tsx`
 - `src/components/shared/PageBanner.tsx`
+- `src/components/shared/PagePlaceholder.tsx` â€” **implemented**
 - `src/components/shared/SectionHeader.tsx`
 - `src/components/shared/ShareLinks.tsx`
 - `src/components/shared/SocialLinks.tsx`
@@ -67,8 +81,9 @@ No component exports, props, CSS classes, schemas, or hook behavior have been im
 
 ### src/config/
 
-- `src/config/navigation.ts`
-- `src/config/site.ts`
+- `src/config/footer.ts` — **implemented**
+- `src/config/navigation.ts` â€” **implemented**
+- `src/config/site.ts` â€” **implemented**
 
 ### src/hooks/
 
@@ -79,25 +94,34 @@ No component exports, props, CSS classes, schemas, or hook behavior have been im
 
 ### src/lib/
 
-- `src/lib/cn.ts`
+- `src/lib/cn.ts` â€” **implemented**
 - `src/lib/metadata.ts`
-
-### src/styles/
-
-- `src/styles/animations.css`
-- `src/styles/prose.css`
-- `src/styles/tokens.css`
-- `src/styles/typography.css`
 
 ## Feature files
 
 ### home
 
+- `src/features/home/components/BlogPreviewSection.tsx` — **implemented**
 - `src/features/home/components/ClientStats.tsx`
 - `src/features/home/components/FeaturedWork.tsx`
-- `src/features/home/components/HeroSection.tsx`
-- `src/features/home/components/ServicesOverview.tsx`
-- `src/features/home/home.content.ts`
+- `src/features/home/components/FounderSection.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/components/FounderTopicsCarousel.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/components/HeroBackground.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/components/HeroGateway.tsx` — **implemented**
+- `src/features/home/components/HeroSection.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/components/JourneyCard.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/components/PartnerLogoTile.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/components/PortfolioPreviewCard.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/components/PortfolioPreviewSection.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/components/ServiceCapabilityCard.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/components/ServicesOverview.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/components/ServicesShowcaseSection.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/components/TrustedTeamsSection.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/components/TrustedPartnersSection.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/components/ValueCard.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/components/WhoWeAreMedia.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/components/WhoWeAreSection.tsx` Ã¢â‚¬â€ **implemented**
+- `src/features/home/home.content.ts` Ã¢â‚¬â€ **implemented**
 
 ### about
 
@@ -137,7 +161,7 @@ No component exports, props, CSS classes, schemas, or hook behavior have been im
 
 - `src/features/blog/blog.content.ts`
 - `src/features/blog/blog.types.ts`
-- `src/features/blog/components/BlogCard.tsx`
+- `src/features/blog/components/BlogCard.tsx` — **implemented**
 - `src/features/blog/components/BlogFeatured.tsx`
 - `src/features/blog/components/BlogFilter.tsx`
 - `src/features/blog/components/BlogGrid.tsx`
@@ -209,5 +233,7 @@ Each asset folder contains an empty `.gitkeep`. The brand folder also contains t
 ## Reservation rules
 
 Optional interaction primitives are reserved for later use. Do not add separate files for each button size, text size, visual state, or color variation; those should share their owning component and token definitions.
+
+Global Tailwind tokens and base styles live in `src/app/globals.css`; separate global stylesheet placeholders are no longer part of the architecture.
 
 Add new files when a concrete component, behavior, or content responsibility requires them. Keep this inventory aligned with additions, moves, and removals.

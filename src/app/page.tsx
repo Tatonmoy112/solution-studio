@@ -1,14 +1,27 @@
+import { FounderSection } from "@/features/home/components/FounderSection";
+import { FounderTopicsCarousel } from "@/features/home/components/FounderTopicsCarousel";
+import { HeroSection } from "@/features/home/components/HeroSection";
+import { BlogPreviewSection } from "@/features/home/components/BlogPreviewSection";
+import { PortfolioPreviewSection } from "@/features/home/components/PortfolioPreviewSection";
+import { ServicesOverview } from "@/features/home/components/ServicesOverview";
+import { ServicesShowcaseSection } from "@/features/home/components/ServicesShowcaseSection";
+import { TrustedTeamsSection } from "@/features/home/components/TrustedTeamsSection";
+import { TrustedPartnersSection } from "@/features/home/components/TrustedPartnersSection";
+import { WhoWeAreSection } from "@/features/home/components/WhoWeAreSection";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-slate-950 text-white">
-      <div className="max-w-2xl text-center space-y-6">
-        <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-teal-400 to-cyan-500 bg-clip-text text-transparent">
-          Solution Studio
-        </h1>
-        <p className="text-slate-400 text-lg sm:text-xl">
-          Fresh start! Ready for building your application from the ground up.
-        </p>
-      </div>
+    <main className="flex flex-1 flex-col">
+      <HeroSection />
+      <WhoWeAreSection />
+      <ServicesOverview />
+      <TrustedTeamsSection />
+      <ServicesShowcaseSection />
+      <FounderSection />
+      <FounderTopicsCarousel />
+      <PortfolioPreviewSection />
+      <TrustedPartnersSection />
+      <BlogPreviewSection />
     </main>
   );
 }

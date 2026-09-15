@@ -1,12 +1,12 @@
-# Page and design-reference map
+﻿# Page and design-reference map
 
 ## Mapping status
 
-These mappings use existing route filenames and local PNG export names. Visual review is partial. Names alone are not proof of final page intent, and no new pages were implemented.
+These mappings use existing route filenames and local PNG export names. Visual review is partial. Every route is a valid module. The home route renders sections through the blog preview; the shared footer follows every route. Routes awaiting their final design render the shared PagePlaceholder.
 
 | Route | Route file under src/app | Reference under figma | Feature owner |
 | --- | --- | --- | --- |
-| / | `page.tsx` | `landing.png` | home |
+| / | `page.tsx` | `landing.png` plus supplied hero, Who We Are, journey-card, logo-carousel, services, founder, founder-topics, portfolio-preview, trusted-partners, and blog-preview references | home sections through blog preview implemented |
 | /about | `about/page.tsx` | `about us.png` | about |
 | /services | `services/page.tsx` | `service.png` | services |
 | /services/[slug] | `services/[slug]/page.tsx` | `service details page.png` | services |
@@ -24,8 +24,15 @@ These mappings use existing route filenames and local PNG export names. Visual r
 
 - `about us (1).png` is the fourteenth export. Its inspected content shows a project case study, including project overview, challenges, solution, and project navigation. It is an additional portfolio-detail reference candidate, not evidence for a second About route.
 - `clients (1).png` is headed Partners. The existing clients route is preserved pending a naming/content decision.
-- The Product navigation item in reviewed exports has no dedicated matching page export. No product route has been added.
-- The landing export could not be displayed during the initial review because of an image-tool decoding error. Its home mapping is based on the filename.
+- The Product navigation item has no dedicated matching page export or route. It appears in the implemented navbar as disabled until that route is defined.
+- The home hero background GIF has not been supplied. `HeroBackground.tsx` provides the documented visual placeholder until that asset is available.
+- The Who We Are team photograph has not been supplied as a standalone production asset. `WhoWeAreMedia.tsx` preserves the supplied image dimensions and overlay with a temporary visual fallback.
+- The Strategy, Design, and Engineering photographs have not been supplied as standalone production assets. `JourneyCard.tsx` preserves their frames and alternating placement with temporary themed fallbacks.
+- The trusted-team logos have not been supplied as standalone assets. `ClientLogos.tsx` renders their configured names in equal-height frames until the production logo files are added.
+- The three services-showcase images have not been supplied as standalone assets. `ServiceCapabilityCard.tsx` preserves their active-state dimensions with temporary themed fallbacks.
+- The four home portfolio-preview thumbnails have not been supplied as standalone production assets. `PortfolioPreviewCard.tsx` preserves their supplied dimensions with explicit temporary visual fallbacks. The four preview records and category assignments are placeholders for approved project data.
+- Vellow.ai, Freshworks, and Adobe Solution Partner in the trusted-partners screenshot are visual references only. The implemented `PartnerLogoTile.tsx` uses neutral labels in equal-sized frames until approved partner names and logo assets are supplied.
+- The footer reference concept and affiliation layout are approved for use, with Solution Studio as the brand name. Its CTA background, membership logos, AI-service icons, and external social destinations have not been supplied as production assets or URLs. The footer form is disabled while the contact endpoint returns HTTP 501.
 - Several reviewed exports show reference branding and sample content from other organizations. That content is not approved Solution Studio copy.
 - Exact responsive specifications, interactions, fonts, and token values cannot be established from filenames or this partial visual review.
 
@@ -35,7 +42,7 @@ Service, portfolio, and client references show category filtering and image-back
 
 ## Reserved endpoint files
 
-- `src/app/api/contact/route.ts`: intended contact submission entry point; empty.
-- `src/app/api/newsletter/route.ts`: intended newsletter entry point; empty.
+- `src/app/api/contact/route.ts`: valid POST endpoint returning HTTP 501 until contact submission is implemented.
+- `src/app/api/newsletter/route.ts`: valid POST endpoint returning HTTP 501 until newsletter subscription is implemented.
 
 Job application submission behavior remains a future decision. There is no application endpoint in this scaffold.
