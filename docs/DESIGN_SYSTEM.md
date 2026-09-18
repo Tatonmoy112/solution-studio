@@ -67,10 +67,13 @@ The shared navbar is implemented from the supplied screenshot and `figma/figma.m
 | Desktop links | Bold 16px text with responsive 24px/40px gaps |
 | Search action | `41px` square with one-pixel border and 16px radius |
 | Contact action | Minimum `175px × 42px` with pill radius |
-| About menu | `400px` left column, flexible right column, 20px outer radius |
+| Mega-menu frame | `400px` blue introduction column, flexible light right column, 20px outer radius |
+| About menu | Minimum `380px` tall, `150px` banner, six links in three columns; bottom CTA remains `336px × 42px` at the reference width |
+| Services menu | Content-driven height (about `517px` at the reference width), three capability columns, `150px` featured row |
+| Product menu | Minimum `315px` tall, two `225px` cards with `185px` media frames |
 | Desktop breakpoint | Full navigation at `xl`; mobile trigger below it |
 
-Active route, hover, keyboard-focus, expanded-menu, mobile-menu, and disabled Product states are implemented. The About menu closes on selection, pointer exit, outside pointer interaction, and Escape.
+The three menus share `MegaMenuFrame` and keep their content in `src/config/navigation.ts`. All dimensions above are reference desktop values. The Services column grid has no forced empty height, while About and Product can grow beyond their minimum heights when copy wraps. The shared frame clips horizontal overflow and scrolls vertically only when the viewport is shorter than its content. The About and Services proposal links stay at the bottom of their left columns and cannot shrink. About, Services, and Product open on desktop hover or button activation. Mobile navigation uses expandable groups, with Product linking to existing Portfolio and Contact routes because `/product` has not been built. The menu closes on selection, pointer or focus exit, outside pointer interaction, and Escape. Missing menu photographs are nullable media slots; no screenshot crop is used as a production asset.
 
 ## Component rules
 

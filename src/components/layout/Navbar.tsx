@@ -4,21 +4,24 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { primaryNavigation } from "@/config/navigation";
+import { primaryNavigation, type MegaMenuKey } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { Container } from "./Container";
 import { MobileNavigation } from "./MobileNavigation";
 import { AboutMegaMenu } from "./navbar/AboutMegaMenu";
 import { DesktopNavigation } from "./navbar/DesktopNavigation";
 import { NavbarActions } from "./navbar/NavbarActions";
+import { ProductMegaMenu } from "./navbar/ProductMegaMenu";
+import { ServicesMegaMenu } from "./navbar/ServicesMegaMenu";
 
 export function Navbar() {
   const pathname = usePathname();
-  const [aboutOpenAtPathname, setAboutOpenAtPathname] = useState<
-    string | null
-  >(null);
+  const [openAtPathname, setOpenAtPathname] = useState<{
+    menu: MegaMenuKey;
+    pathname: string;
+  } | null>(null);
   const navbarRef = useRef<HTMLElement>(null);
-  const isAboutOpen = aboutOpenAtPathname === pathname;
+  const activeMenu = openAtPathname?.pathname === pathname ? openAtPathname.menu : null;
 
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent) => {
@@ -26,12 +29,21 @@ export function Navbar() {
         navbarRef.current &&
         !navbarRef.current.contains(event.target as Node)
       ) {
-        setAboutOpenAtPathname(null);
+        setOpenAtPathname(null);
       }
     };
 
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setAboutOpenAtPathname(null);
+      if (event.key !== "Escape") return;
+      const region = (event.target as HTMLElement).closest<HTMLElement>(
+        '[id$="-mega-menu"]',
+      );
+      if (region) {
+        navbarRef.current
+          ?.querySelector<HTMLButtonElement>(`[aria-controls="${region.id}"]`)
+          ?.focus();
+      }
+      setOpenAtPathname(null);
     };
 
     document.addEventListener("pointerdown", handlePointerDown);
@@ -52,7 +64,12 @@ export function Navbar() {
         as="nav"
         aria-label="Primary navigation"
         className="relative flex min-h-[47px] items-center justify-between gap-6"
-        onMouseLeave={() => setAboutOpenAtPathname(null)}
+        onMouseLeave={() => setOpenAtPathname(null)}
+        onBlur={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+            setOpenAtPathname(null);
+          }
+        }}
       >
         <Link
           href="/"
@@ -73,14 +90,16 @@ export function Navbar() {
         <DesktopNavigation
           items={primaryNavigation}
           pathname={pathname}
-          isAboutOpen={isAboutOpen}
-          onAboutToggle={() =>
-            setAboutOpenAtPathname((current) =>
-              current === pathname ? null : pathname,
+          activeMenu={activeMenu}
+          onMenuToggle={(menu) =>
+            setOpenAtPathname((current) =>
+              current?.pathname === pathname && current.menu === menu
+                ? null
+                : { menu, pathname },
             )
           }
-          onAboutOpen={() => setAboutOpenAtPathname(pathname)}
-          onAboutClose={() => setAboutOpenAtPathname(null)}
+          onMenuOpen={(menu) => setOpenAtPathname({ menu, pathname })}
+          onMenuClose={() => setOpenAtPathname(null)}
         />
 
         <NavbarActions />
@@ -90,8 +109,14 @@ export function Navbar() {
           pathname={pathname}
         />
 
-        {isAboutOpen ? (
-          <AboutMegaMenu onNavigate={() => setAboutOpenAtPathname(null)} />
+        {activeMenu === "about" ? (
+          <AboutMegaMenu onNavigate={() => setOpenAtPathname(null)} />
+        ) : null}
+        {activeMenu === "services" ? (
+          <ServicesMegaMenu onNavigate={() => setOpenAtPathname(null)} />
+        ) : null}
+        {activeMenu === "product" ? (
+          <ProductMegaMenu onNavigate={() => setOpenAtPathname(null)} />
         ) : null}
       </Container>
     </header>

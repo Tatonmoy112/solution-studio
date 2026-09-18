@@ -27,17 +27,6 @@ export function NavLink({
     className,
   );
 
-  if (item.disabled) {
-    return (
-      <span
-        aria-disabled="true"
-        className={cn(sharedClassName, "cursor-default text-foreground/70")}
-      >
-        {item.label}
-      </span>
-    );
-  }
-
   return (
     <Link
       href={item.href}

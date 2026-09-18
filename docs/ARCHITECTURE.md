@@ -51,7 +51,7 @@ Component-specific types may stay with their component when implemented. Add ser
 - SocialLinks points to company profiles. ShareLinks represents sharing the current content.
 - RelatedPosts and ProjectNavigation have concrete domain owners instead of an undefined universal related-items component.
 - Global theme and modal contexts are not scaffolded. Add global state only when a demonstrated requirement needs it; `src/app/providers.tsx` remains reserved.
-- `Navbar.tsx` owns navbar state and integration. Files under `src/components/layout/navbar/` own desktop links, actions, and the About mega-menu. `MobileNavigation.tsx` owns the responsive menu.
+- `Navbar.tsx` owns navbar state and integration. Files under `src/components/layout/navbar/` own desktop links, actions, and the About, Services, and Product mega-menus. `MobileNavigation.tsx` owns the responsive accordion menu.
 - `Container.tsx` owns the shared `1620px` maximum width. The parent layout centers it with grid placement rather than margin utilities.
 - `HeroSection.tsx` owns the home hero composition. `HeroBackground.tsx` isolates the decorative media layer so the future GIF can be added without changing heading, copy, or CTA markup. `HeroGateway.tsx` owns the Gateway word's four hairlines, extended horizontal strokes, and corner dots inside the semantic hero heading.
 - `WhoWeAreSection.tsx` owns the home introduction layout. `ValueCard.tsx` owns its repeated value-card composition, while `WhoWeAreMedia.tsx` isolates the optional team image and overlay.
@@ -86,13 +86,17 @@ src/components/layout/
 └── navbar/
     ├── AboutMegaMenu.tsx
     ├── DesktopNavigation.tsx
+    ├── MegaMenuFrame.tsx
+    ├── MegaMenuNote.tsx
     ├── NavbarActions.tsx
-    └── NavLink.tsx
+    ├── NavLink.tsx
+    ├── ProductMegaMenu.tsx
+    └── ServicesMegaMenu.tsx
 ```
 
-Navigation labels, URLs, disabled state, and mega-menu data live in `src/config/navigation.ts`. Brand name, logo path, and contact URL live in `src/config/site.ts`. `Navbar.tsx` is mounted once in the root layout.
+Navigation labels, URLs, mega-menu keys, item copy, and nullable media sources live in `src/config/navigation.ts`. Brand name, logo path, and contact URL live in `src/config/site.ts`. `Navbar.tsx` is mounted once in the root layout.
 
-The Product item remains visibly disabled because no Product route or page reference exists. It should become a link only when that route is defined.
+`MegaMenuFrame.tsx` owns the shared `400px` blue introduction column, proposal action, rounded panel, and desktop overlay behavior. The three menu components own their distinct right sides. About maps six destinations under a `1156px by 150px` banner, Services maps three capability columns and a featured row, and Product maps two media cards. Services derives its height from content rather than the original oversized `371px` column frame. About and Product retain their reference minimum heights but grow with wrapped copy; internal vertical scrolling is reserved for short viewports. The proposal action stays at the bottom of the left column without shrinking. The reference images are not available as standalone production assets, so their configured sources remain `null` and the frames expose named media slots. Product is an informational menu, not a `/product` link: its cards lead to the existing Portfolio and Contact routes. On mobile, the same three groups expand into accessible link lists; About and Services also retain direct parent links. The desktop menu closes on route selection, pointer exit, focus exit, outside pointer interaction, and Escape. Keyboard activation or Arrow Down moves focus into the open menu.
 
 ## Footer architecture
 

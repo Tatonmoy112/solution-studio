@@ -47,8 +47,12 @@ Most files listed below remain empty placeholders. Implemented shared foundation
 
 - `src/components/layout/navbar/AboutMegaMenu.tsx` â€” **implemented**
 - `src/components/layout/navbar/DesktopNavigation.tsx` â€” **implemented**
+- `src/components/layout/navbar/MegaMenuFrame.tsx` — **implemented**
+- `src/components/layout/navbar/MegaMenuNote.tsx` — **implemented**
 - `src/components/layout/navbar/NavbarActions.tsx` â€” **implemented**
 - `src/components/layout/navbar/NavLink.tsx` â€” **implemented**
+- `src/components/layout/navbar/ProductMegaMenu.tsx` — **implemented**
+- `src/components/layout/navbar/ServicesMegaMenu.tsx` — **implemented**
 
 ### src/components/layout/footer/
 
