@@ -2,7 +2,7 @@
 
 ## Current state
 
-The agreed folder structure is applied. The shared navbar and footer, home sections through the blog preview, core typography, card and button primitives, route-level states, valid page placeholders, metadata routes, navigation configuration, class-name helper, font setup, and Tailwind theme are implemented. Most remaining feature and UI files remain empty placeholders.
+The agreed folder structure is applied. The shared navbar and footer, home sections through the blog preview, the About page hero, core typography, card and button primitives, route-level states, valid page placeholders, metadata routes, navigation configuration, class-name helper, font setup, and Tailwind theme are implemented. Most remaining feature and UI files remain empty placeholders.
 
 ## Folder ownership
 
@@ -44,7 +44,7 @@ Component-specific types may stay with their component when implemented. Add ser
 
 - Only the generic Card belongs in `src/components/ui/card/`. ServiceCard, PortfolioCard, BlogCard, CareerCard, ClientCard, and TeamCard belong to their respective features.
 - CTASection and TestimonialsSection have one reusable owner in `src/components/shared/`.
-- PageBanner represents an image-backed page introduction. SectionHeader groups a section's introductory text. Domain detail heroes remain feature-specific.
+- `PageBanner.tsx` owns the shared image-backed page introduction; each route supplies its title and background source. SectionHeader groups a section's introductory text. Domain detail heroes remain feature-specific.
 - NewsletterSection owns the reusable section presentation. NewsletterForm owns its form behavior.
 - CategoryFilter owns the shared filter control. PortfolioFilter and BlogFilter are reserved for domain-specific composition and behavior.
 - The filter hook lives at `src/components/shared/useFilter.ts`; the toast hook lives at `src/components/ui/toast/useToast.ts`.
@@ -55,7 +55,7 @@ Component-specific types may stay with their component when implemented. Add ser
 - `Container.tsx` owns the shared `1620px` maximum width. The parent layout centers it with grid placement rather than margin utilities.
 - `HeroSection.tsx` owns the home hero composition. `HeroBackground.tsx` isolates the decorative media layer so the future GIF can be added without changing heading, copy, or CTA markup. `HeroGateway.tsx` owns the Gateway word's four hairlines, extended horizontal strokes, and corner dots inside the semantic hero heading.
 - `WhoWeAreSection.tsx` owns the home introduction layout. `ValueCard.tsx` owns its repeated value-card composition, while `WhoWeAreMedia.tsx` isolates the optional team image and overlay.
-- `ServicesOverview.tsx` owns the sticky journey stack and maps its content into one reusable `JourneyCard.tsx` implementation.
+- Shared `ServicesOverview.tsx` owns the sticky card stack and maps page-specific content into one reusable `JourneyCard.tsx` implementation. Home supplies journey records; About supplies values, vision, and mission records.
 - `TrustedTeamsSection.tsx` owns the home-specific heading and composes the reusable `ClientLogos.tsx` carousel.
 - `ServicesShowcaseSection.tsx` owns service selection state and maps three data records into `ServiceCapabilityCard.tsx`. `IconButton.tsx` provides the shared previous/next controls.
 - `FounderSection.tsx` owns the founder name, outlined label, and statement composition.
@@ -98,6 +98,26 @@ Navigation labels, URLs, mega-menu keys, item copy, and nullable media sources l
 
 `MegaMenuFrame.tsx` owns the shared `400px` blue introduction column, proposal action, rounded panel, and desktop overlay behavior. The three menu components own their distinct right sides. About maps six destinations under a `1156px by 150px` banner, Services maps three capability columns and a featured row, and Product maps two media cards. Services derives its height from content rather than the original oversized `371px` column frame. About and Product retain their reference minimum heights but grow with wrapped copy; internal vertical scrolling is reserved for short viewports. The proposal action stays at the bottom of the left column without shrinking. The reference images are not available as standalone production assets, so their configured sources remain `null` and the frames expose named media slots. Product is an informational menu, not a `/product` link: its cards lead to the existing Portfolio and Contact routes. On mobile, the same three groups expand into accessible link lists; About and Services also retain direct parent links. The desktop menu closes on route selection, pointer exit, focus exit, outside pointer interaction, and Escape. Keyboard activation or Arrow Down moves focus into the open menu.
 
+## About feature architecture
+
+The `/about` route composes the shared `PageBanner` first, followed by the About-only `AboutIntroductionSection`, `AboutWhoWeAreSection`, `AboutJourneySection`, `AboutImpactSection`, and `AboutTeamImageSection`, then the shared `ServicesOverview` with About content and the About-only `AboutAchievementsSection` and `AboutGrowthBannerSection`. At the 1920px reference width, the banner sits directly below the navbar with 24px side insets and a 1872px by 400px rounded frame. `PageBanner` owns the semantic `h1`, its 48px visual size and 65px title frame, decorative image rendering, and dark fallback. The route supplies a unique heading ID, while `about.content.ts` owns the title and media path. The About background lives at `public/images/about/about-hero.png`, with the title rendered separately as selectable text. Other page routes can supply their own title and background without duplicating this layout.
+
+`AboutIntroductionSection` keeps the About-specific copy and six-image collage in `src/features/about/`. It uses the shared Eyebrow plain variant, global Heading, and global Text. At the 1620px reference width, the image frames preserve the staggered desktop positions and aspect ratios; below 1700px they flow into a responsive one-, two-, or three-column grid. Image sources remain `null` in `about.content.ts` until the owner provides files, and each empty frame has a named placeholder slot. The reference's Trends Bird sentence is adapted to the approved Solution Studio brand.
+
+`AboutWhoWeAreSection` is the third About-only section. It places the section subtitle and global title in the left half of the 1620px container, supporting heading and global text in the right half, then three 527px by 350px image frames with 20px gaps and corners. The frames retain their 527:350 ratio as the grid drops to two and one columns on smaller screens. Its image paths are nullable in `about.content.ts`, with named placeholders until the owner adds assets.
+
+`AboutJourneySection` is the fourth About-only section. Its desktop heading and five-year line occupy roughly 1620px by 154px, followed after 80px by an 800px text column, a 56px gap, and a 764px by 350px image frame. The first fifth of the rule is orange to match the 2012 reference state. The section uses the shared plain Eyebrow, global Heading, and global Text roles; the milestone title and display year have local visual sizes. The image source remains nullable in `about.content.ts`, and the layout stacks below desktop widths. The years are displayed as static timeline labels because no later milestone content or interaction was supplied. The project owner approved the 2012 founding claim for Solution Studio.
+
+`AboutImpactSection` is the fifth About-only section. At the 1620px reference width, its heading row uses the plain Eyebrow, global Heading, and global Text roles. The rounded light grid is 1620px by 452px with 16px padding and gaps. Its blue feature card is 412px by 420px with four capsule labels and the approved Singer/John Doe quote; the two-by-two metric cards are each 572px by 202px. The project owner approved the 2012, 650+, 50+, and 14+ figures as Solution Studio content. The feature background source remains nullable in `about.content.ts`, with a CSS background placeholder until an asset is supplied. The card grid stacks at narrower widths without horizontal overflow.
+
+`AboutTeamImageSection` is the sixth About-only section. It fills the viewport width at 400px high on desktop and scales down on small screens. Its image source is nullable in `about.content.ts`, and a CSS placeholder fills the frame until the team image is supplied. The reference has no visible copy, so the section does not render a title, subtitle, or body text.
+
+The seventh About section reuses shared `ServicesOverview` and `JourneyCard` with Values, Vision, and Mission records from `about.content.ts`. Its centered heading uses the shared plain Eyebrow and global Heading with a top rule, while the cards omit the home CTAs, keep the alternating media placement, and use a white section background and tighter spacing. About media sources remain nullable until the project owner adds the images. The shared components retain the home appearance when passed the home records.
+
+`AboutAchievementsSection` is the eighth About-only section. Its 1620px grid contains a black summary tile and three 430px award cards based on the supplied reference, with responsive one-, two-, or three-award visibility beside the summary tile. Previous and next controls rotate the award order. The header uses the global plain Eyebrow, Heading, and Text roles. A CSS line pattern fills the optional background-image slot until an asset is supplied. Award URLs are nullable; the View label is visual-only until each destination is provided.
+
+`AboutGrowthBannerSection` is the ninth About-only section. It renders a 1615px by 420px rounded background-image frame with a three-line global Heading and a shared Button linking to Contact. Its `backgroundSrc` remains nullable in `about.content.ts`, and the dark CSS placeholder preserves contrast until the project owner supplies the artwork. The desktop content begins 67px from the left and 90px from the top; smaller screens use fluid width and padding. Later About sections remain unimplemented.
+
 ## Footer architecture
 
 `Footer.tsx` is mounted once after page content in `src/app/layout.tsx`, so every route shares the same footer. At the `1920px` reference width, the outer footer is `1051px` tall: a `463px` CTA panel and a `518px` lower panel sit within `32px` top and `38px` bottom padding. The CTA panel is at most `1823px` wide with `20px` top corners. `FooterBackground.tsx` owns its decorative image slot; `footerContent.backgroundSrc` stays `null` until the project owner adds the background image.
@@ -118,12 +138,10 @@ src/features/home/
     |-- BlogPreviewSection.tsx
     |-- FounderSection.tsx
     |-- FounderTopicsCarousel.tsx
-    |-- JourneyCard.tsx
     |-- PartnerLogoTile.tsx
     |-- PortfolioPreviewCard.tsx
     |-- PortfolioPreviewSection.tsx
     |-- ServiceCapabilityCard.tsx
-    |-- ServicesOverview.tsx
     |-- ServicesShowcaseSection.tsx
     |-- TrustedTeamsSection.tsx
     |-- TrustedPartnersSection.tsx
@@ -136,7 +154,7 @@ The `/` route composes `HeroSection`, `WhoWeAreSection`, `ServicesOverview`, `Tr
 
 `WhoWeAreSection` resolves to two `390px` cards per row beside a `663px by 578px` media frame at the reference width, then stacks at smaller breakpoints. The photograph from the screenshot is not present in `public/images`; `WhoWeAreMedia.tsx` therefore renders a fallback marked with `data-slot="who-we-are-image-placeholder"`. Set `media.src` in `home.content.ts` after adding the approved image to `public/images/home/`.
 
-`ServicesOverview` maps three records from `home.content.ts` into `JourneyCard`. Cards enter normal document flow on smaller viewports and form a progressively offset sticky stack from the `xl` breakpoint. Each record controls content, theme, link, image source, and left/right media placement. The three reference photographs are not present as standalone assets, so each image frame exposes a named `data-slot` placeholder until its `image.src` is set.
+The shared `ServicesOverview` maps three home records from `home.content.ts` into the shared `JourneyCard`. Cards enter normal document flow on smaller viewports and form a progressively offset sticky stack from the `xl` breakpoint. Each record controls content, theme, optional link, image source, and left/right media placement. The three reference photographs are not present as standalone assets, so each image frame exposes a named `data-slot` placeholder until its `image.src` is set.
 
 `TrustedTeamsSection` passes configured logo data to the shared `ClientLogos` carousel. The carousel duplicates one semantic logo group to create a seamless CSS loop; the duplicate is hidden from assistive technology. It pauses on hover and stops under `prefers-reduced-motion`. Every image uses a fixed `46px` rendered height and proportional width. Until standalone logo files are added to `public/images/clients/`, accessible text labels fill those frames.
 

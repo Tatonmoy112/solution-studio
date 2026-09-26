@@ -10,6 +10,9 @@ const journeyIcons = {
   strategy: UsersRound,
   design: Palette,
   engineering: CodeXml,
+  values: UsersRound,
+  vision: UsersRound,
+  mission: UsersRound,
 } as const;
 
 const journeyThemes = {
@@ -29,10 +32,9 @@ const journeyThemes = {
   },
 } as const;
 
-type JourneyCardProps = {
+export type JourneyCardContent = {
   category: string;
-  className?: string;
-  cta: {
+  cta?: {
     href: string;
     label: string;
   };
@@ -47,6 +49,11 @@ type JourneyCardProps = {
   title: string;
 };
 
+type JourneyCardProps = JourneyCardContent & {
+  className?: string;
+  variant?: "standard" | "compact";
+};
+
 export function JourneyCard({
   category,
   className,
@@ -56,6 +63,7 @@ export function JourneyCard({
   image,
   theme,
   title,
+  variant = "standard",
 }: JourneyCardProps) {
   const Icon = journeyIcons[icon];
   const styles = journeyThemes[theme];
@@ -65,10 +73,13 @@ export function JourneyCard({
     <Card
       as="article"
       className={cn(
-        "grid w-full max-w-[1384px] items-center justify-between gap-8 overflow-hidden px-5 py-10 shadow-[0_18px_50px_rgba(16,34,56,0.08)] sm:px-8 xl:min-h-[516px] xl:gap-5 xl:px-[50px] xl:pb-12 xl:pt-[88px]",
+        "grid w-full max-w-[1384px] items-center justify-between gap-8 overflow-hidden px-5 py-10 sm:px-8 xl:gap-5 xl:px-[50px]",
+        variant === "compact"
+          ? "shadow-none xl:min-h-[476px] xl:py-12"
+          : "shadow-[0_18px_50px_rgba(16,34,56,0.08)] xl:min-h-[516px] xl:pb-12 xl:pt-[88px]",
         imageOnLeft
-          ? "xl:grid-cols-[570px_minmax(0,673px)]"
-          : "xl:grid-cols-[minmax(0,673px)_570px]",
+          ? "xl:grid-cols-[minmax(0,570px)_minmax(0,1fr)] min-[1700px]:grid-cols-[570px_minmax(0,673px)]"
+          : "xl:grid-cols-[minmax(0,1fr)_minmax(0,570px)] min-[1700px]:grid-cols-[minmax(0,673px)_570px]",
         styles.card,
         className,
       )}
@@ -98,20 +109,26 @@ export function JourneyCard({
           </p>
         </div>
 
-        <Heading as="h3" variant="feature" className="max-w-[673px]">
+        <Heading
+          as={variant === "compact" ? "h2" : "h3"}
+          variant="feature"
+          className="max-w-[673px]"
+        >
           {title}
         </Heading>
         <Text variant="feature" className="max-w-[612px] text-muted">
           {description}
         </Text>
-        <Button
-          href={cta.href}
-          variant="dark"
-          className="min-w-[233px] font-bold"
-          endIcon={<ArrowRight className="size-5" strokeWidth={1.8} />}
-        >
-          {cta.label}
-        </Button>
+        {cta ? (
+          <Button
+            href={cta.href}
+            variant="dark"
+            className="min-w-[233px] font-bold"
+            endIcon={<ArrowRight className="size-5" strokeWidth={1.8} />}
+          >
+            {cta.label}
+          </Button>
+        ) : null}
       </div>
 
       <div

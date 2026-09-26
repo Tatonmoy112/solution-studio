@@ -69,11 +69,13 @@ Most files listed below remain empty placeholders. Implemented shared foundation
 - `src/components/shared/CategoryFilter.tsx`
 - `src/components/shared/ClientLogos.tsx` Ã¢â‚¬â€ **implemented**
 - `src/components/shared/FAQSection.tsx`
+- `src/components/shared/JourneyCard.tsx` — **implemented**
 - `src/components/shared/NewsletterSection.tsx`
-- `src/components/shared/PageBanner.tsx`
+- `src/components/shared/PageBanner.tsx` — **implemented**
 - `src/components/shared/PagePlaceholder.tsx` â€” **implemented**
 - `src/components/shared/SectionHeader.tsx`
 - `src/components/shared/ShareLinks.tsx`
+- `src/components/shared/ServicesOverview.tsx` — **implemented**
 - `src/components/shared/SocialLinks.tsx`
 - `src/components/shared/TechStackGrid.tsx`
 - `src/components/shared/TestimonialsSection.tsx`
@@ -113,12 +115,10 @@ Most files listed below remain empty placeholders. Implemented shared foundation
 - `src/features/home/components/HeroBackground.tsx` Ã¢â‚¬â€ **implemented**
 - `src/features/home/components/HeroGateway.tsx` — **implemented**
 - `src/features/home/components/HeroSection.tsx` Ã¢â‚¬â€ **implemented**
-- `src/features/home/components/JourneyCard.tsx` Ã¢â‚¬â€ **implemented**
 - `src/features/home/components/PartnerLogoTile.tsx` Ã¢â‚¬â€ **implemented**
 - `src/features/home/components/PortfolioPreviewCard.tsx` Ã¢â‚¬â€ **implemented**
 - `src/features/home/components/PortfolioPreviewSection.tsx` Ã¢â‚¬â€ **implemented**
 - `src/features/home/components/ServiceCapabilityCard.tsx` Ã¢â‚¬â€ **implemented**
-- `src/features/home/components/ServicesOverview.tsx` Ã¢â‚¬â€ **implemented**
 - `src/features/home/components/ServicesShowcaseSection.tsx` Ã¢â‚¬â€ **implemented**
 - `src/features/home/components/TrustedTeamsSection.tsx` Ã¢â‚¬â€ **implemented**
 - `src/features/home/components/TrustedPartnersSection.tsx` Ã¢â‚¬â€ **implemented**
@@ -129,8 +129,14 @@ Most files listed below remain empty placeholders. Implemented shared foundation
 
 ### about
 
-- `src/features/about/about.content.ts`
-- `src/features/about/components/AboutHero.tsx`
+- `src/features/about/about.content.ts` — **implemented**
+- `src/features/about/components/AboutIntroductionSection.tsx` — **implemented**
+- `src/features/about/components/AboutWhoWeAreSection.tsx` — **implemented**
+- `src/features/about/components/AboutJourneySection.tsx` — **implemented**
+- `src/features/about/components/AboutImpactSection.tsx` — **implemented**
+- `src/features/about/components/AboutTeamImageSection.tsx` — **implemented**
+- `src/features/about/components/AboutAchievementsSection.tsx` — **implemented**
+- `src/features/about/components/AboutGrowthBannerSection.tsx` — **implemented**
 - `src/features/about/components/CompanyHistory.tsx`
 - `src/features/about/components/CoreValues.tsx`
 - `src/features/about/components/MissionVision.tsx`

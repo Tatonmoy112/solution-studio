@@ -47,7 +47,7 @@ The implemented typography primitives provide these current roles:
 | Card text | `15px / 25px` | `Text` card variant |
 | Feature text | `16px / 28px` | `Text` feature variant |
 | Service-card text | `16px / 22px` within a `110px` frame | `Text` serviceCard variant |
-| Global subtitle | Saira `13px`, bordered pill | `Eyebrow` |
+| Global subtitle | Saira `13px` bordered pill, or Space Mono `14px` plain uppercase | `Eyebrow` variants |
 | Form label | Associated control label | `FormLabel.tsx` |
 | Form hint | Supporting form instruction | `FormHint.tsx` |
 | Form message | Validation or status feedback | `FormMessage.tsx` |
@@ -111,7 +111,7 @@ Each value card is `390px` wide and at least `107px` high, with `16px 20px` padd
 
 ## Home journey-card specification
 
-`ServicesOverview.tsx` renders one section heading followed by three `JourneyCard` instances from `home.content.ts`. Strategy and Engineering place media on the right; Design places media on the left. This variation is data-driven and does not duplicate card markup.
+Shared `ServicesOverview.tsx` renders the home section heading followed by three shared `JourneyCard` instances from `home.content.ts`. Strategy and Engineering place media on the right; Design places media on the left. About reuses the same components with a plain centered subtitle, global title, Values, Vision, and Mission content, no card CTAs, and alternating media placement. This variation is data-driven and does not duplicate card markup.
 
 | Element | Implemented behavior |
 | --- | --- |

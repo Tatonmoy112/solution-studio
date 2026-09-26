@@ -33,7 +33,7 @@ Add optional modal, drawer, toast, tooltip, or other interaction primitives when
 
 ### 4. Implement reusable sections
 
-Build PageBanner, CategoryFilter, CTASection, TestimonialsSection, and other repeated sections as needed. NewsletterSection composes NewsletterForm when its submission behavior is defined.
+Reuse the implemented `PageBanner` for image-backed page introductions by passing each page's title, background source, and heading ID. Build CategoryFilter, CTASection, TestimonialsSection, and other repeated sections as needed. NewsletterSection composes NewsletterForm when its submission behavior is defined.
 
 ### 5. Implement one feature and page at a time
 
