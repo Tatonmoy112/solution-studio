@@ -1,10 +1,12 @@
-const sharp = require('sharp');
-const fs = require('fs');
-const path = require('path');
+import sharp from 'sharp';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const inputImage = path.join(__dirname, '../public/ss favicon.png');
-const publicDir = path.join(__dirname, '../public');
-const appDir = path.join(__dirname, '../src/app');
+const scriptDir = path.dirname(fileURLToPath(import.meta.url));
+const inputImage = path.join(scriptDir, '../public/ss favicon.png');
+const publicDir = path.join(scriptDir, '../public');
+const appDir = path.join(scriptDir, '../src/app');
 
 function createIco(pngBuffers) {
   const count = pngBuffers.length;
@@ -100,10 +102,9 @@ async function generateFavicons() {
     { width: 48, height: 48, buffer: p48 },
   ]);
 
-  // Write ICO binary to public and src/app
-  fs.writeFileSync(path.join(publicDir, 'favicon.ico'), icoBuffer);
+  // Next.js serves this file at /favicon.ico and adds its icon metadata.
   fs.writeFileSync(path.join(appDir, 'favicon.ico'), icoBuffer);
-  console.log('✓ Generated public/favicon.ico and src/app/favicon.ico (True multi-resolution ICO binary)');
+  console.log('✓ Generated src/app/favicon.ico (16x16, 32x32, 48x48)');
 
   // Write Google-compliant PNG assets
   fs.writeFileSync(path.join(publicDir, 'favicon.png'), p48);

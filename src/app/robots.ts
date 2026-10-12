@@ -7,14 +7,6 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: '/',
       },
-      {
-        userAgent: 'Googlebot-Image',
-        allow: '/',
-      },
-      {
-        userAgent: 'Googlebot-Favicon',
-        allow: '/',
-      },
     ],
     sitemap: 'https://solutionstudio.bd/sitemap.xml',
   };
