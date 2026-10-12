@@ -7,7 +7,6 @@ import Services from "@/components/sections/Services";
 import Industries from "@/components/sections/Industries";
 import Process from "@/components/sections/Process";
 import Values from "@/components/sections/Values";
-import Founder from "@/components/sections/Founder";
 import CallToAction from "@/components/sections/CallToAction";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
@@ -24,7 +23,6 @@ export default function Home() {
       <Industries />
       <Process />
       <Values />
-      <Founder />
       <CallToAction />
       <Contact />
       <Footer />

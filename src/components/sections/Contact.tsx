@@ -165,7 +165,7 @@ export default function Contact() {
         {/* Section Header */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-[#013AFF] font-mono text-sm font-bold">09.</span>
+            <span className="text-[#013AFF] font-mono text-sm font-bold">08.</span>
             <h2 className="text-3xl md:text-5xl font-bold text-[#181A18] uppercase tracking-normal font-heading">
               Contact
             </h2>

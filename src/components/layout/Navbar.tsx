@@ -21,8 +21,7 @@ export default function Navbar() {
     { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
     { name: "Industries", href: "#industries" },
-    { name: "Process", href: "#process" },
-    { name: "Founder", href: "#founder" }
+    { name: "Process", href: "#process" }
   ];
 
   const getLinkHref = (href: string) => {

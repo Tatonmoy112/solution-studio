@@ -34,7 +34,6 @@ export default function Footer() {
     { name: "Services", href: "#services" },
     { name: "Industries", href: "#industries" },
     { name: "Process", href: "#process" },
-    { name: "Founder", href: "#founder" },
     { name: "Contact", href: "#contact" }
   ];
 
