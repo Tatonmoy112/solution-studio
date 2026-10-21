@@ -99,7 +99,7 @@ export default function RootLayout({
       addressCountry: "BD",
     },
     telephone: "+8801316571406",
-    email: "hello@solutionstudio.bd",
+    email: "sales@solutionstudio.bd",
     sameAs: [
       "https://www.facebook.com/share/1bmLnLLAY6/?mibextid=wwXIfr",
       "https://linkedin.com/company/solution-studio-bd",

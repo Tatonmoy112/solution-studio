@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
     const targetEmail = process.env.LEAD_NOTIFICATION_EMAIL || fallbackEmail;
     const leadNotificationFrom =
       process.env.LEAD_NOTIFICATION_FROM ||
-      "Solution Studio <onboarding@resend.dev>";
+      "Solution Studio <sales@solutionstudio.bd>";
 
     let recoveredCount = 0;
 

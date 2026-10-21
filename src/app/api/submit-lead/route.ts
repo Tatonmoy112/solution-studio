@@ -151,7 +151,7 @@ export async function POST(request: NextRequest) {
   const targetEmail = process.env.LEAD_NOTIFICATION_EMAIL || fallbackEmail;
   const leadNotificationFrom =
     process.env.LEAD_NOTIFICATION_FROM ||
-    "Solution Studio <onboarding@resend.dev>";
+    "Solution Studio <sales@solutionstudio.bd>";
 
   let notificationStatus: "sent" | "failed" = "failed";
   let notificationError: string | null = null;
@@ -212,7 +212,7 @@ export async function POST(request: NextRequest) {
         // Dispatch optional prospect auto-responder
         try {
           const autoresponder = generateProspectConfirmationEmail(name);
-          await fetch("https://api.resend.com/emails", {
+          const autoRes = await fetch("https://api.resend.com/emails", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -225,6 +225,10 @@ export async function POST(request: NextRequest) {
               html: autoresponder.html,
             }),
           });
+          if (!autoRes.ok) {
+            const autoErrText = await autoRes.text();
+            console.error("Autoresponder dispatch failed:", autoErrText);
+          }
         } catch (autoErr) {
           console.warn("Autoresponder dispatch notice:", autoErr);
         }

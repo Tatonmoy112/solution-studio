@@ -140,7 +140,7 @@ export const founderBio: FounderBio = {
 export const companyInfo: CompanyInfo = {
   name: "Solution Studio",
   tagline: "Enterprise Software Engineering & Custom Architectures",
-  email: "hello@solutionstudio.bd",
+  email: "sales@solutionstudio.bd",
   phone: "+880 1316-571406",
   address: [
     "House # 55, Road # Hazi Askor Ali Road",
