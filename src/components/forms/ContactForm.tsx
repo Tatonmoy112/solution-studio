@@ -18,6 +18,10 @@ import {
   RotateCcw,
   Banknote,
   Clock,
+  Copy,
+  Check,
+  ArrowRight,
+  ShieldCheck,
 } from "lucide-react";
 import CustomSelect from "@/components/ui/CustomSelect";
 
@@ -33,6 +37,7 @@ export default function ContactForm() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [confirmedLeadId, setConfirmedLeadId] = useState<string | null>(null);
+  const [isCopied, setIsCopied] = useState(false);
 
   const {
     register,
@@ -91,6 +96,14 @@ export default function ContactForm() {
     }
   };
 
+  const handleCopyId = () => {
+    if (confirmedLeadId && typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(confirmedLeadId);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2500);
+    }
+  };
+
   const onSubmit = async (data: LeadFormData) => {
     setIsSubmitting(true);
     setSubmitError(null);
@@ -131,33 +144,115 @@ export default function ContactForm() {
 
   if (submitSuccess) {
     return (
-      <div className="p-6 sm:p-10 md:p-12 rounded-2xl sm:rounded-3xl bg-white border border-[#00BBA7]/30 shadow-xl text-center space-y-5 sm:space-y-6">
-        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#00BBA7]/10 text-[#00BBA7] mx-auto flex items-center justify-center">
-          <CheckCircle2 size={32} className="sm:w-9 sm:h-9" />
+      <div className="p-6 sm:p-10 md:p-12 rounded-2xl sm:rounded-3xl bg-white border border-black/10 shadow-xl text-center space-y-6 sm:space-y-7 relative overflow-hidden">
+        {/* Ambient Top Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-b from-[#00BBA7]/12 via-[#013AFF]/5 to-transparent blur-2xl pointer-events-none" />
+
+        {/* Status Badge & Animated Check Icon */}
+        <div className="relative z-10 space-y-3.5">
+          <div className="relative mx-auto w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
+            <div className="absolute inset-0 rounded-2xl bg-[#00BBA7]/20 animate-ping opacity-25" />
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-[#00BBA7]/15 to-[#00BBA7]/5 border border-[#00BBA7]/30 text-[#00BBA7] flex items-center justify-center shadow-inner">
+              <CheckCircle2 size={36} className="sm:w-10 sm:h-10 text-[#00BBA7]" />
+            </div>
+          </div>
+
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00BBA7]/10 border border-[#00BBA7]/20 text-[#009988] text-[11px] font-semibold uppercase tracking-wider font-mono">
+            <ShieldCheck size={13} />
+            <span>Transmission Verified & Encrypted</span>
+          </div>
         </div>
-        <div className="space-y-2">
-          <h3 className="text-xl sm:text-2xl font-bold text-[#111311] tracking-tight">
+
+        {/* Headline & Body */}
+        <div className="relative z-10 space-y-2 max-w-lg mx-auto">
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#111311] tracking-tight">
             Inquiry Successfully Received
           </h3>
-          <p className="text-xs sm:text-sm text-[#4a524a] max-w-md mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#4a524a] leading-relaxed">
             Thank you for reaching out. Your project specifications have been securely recorded. Our architecture team will review your requirements and respond within <strong>24 business hours</strong>.
           </p>
         </div>
 
+        {/* Reference ID Tracking Pill with One-Click Copy */}
         {confirmedLeadId && (
-          <div className="p-3 bg-neutral-100 rounded-xl font-mono text-xs text-[#6e766e] max-w-xs mx-auto break-all">
-            Reference ID: {confirmedLeadId.slice(0, 16)}
+          <div className="relative z-10 p-3 sm:p-3.5 bg-neutral-50/80 rounded-2xl border border-black/8 flex items-center justify-between gap-3 max-w-md mx-auto text-left shadow-2xs">
+            <div className="min-w-0 flex-1">
+              <span className="text-[10px] uppercase font-mono tracking-wider text-[#6e766e] block font-medium">
+                Tracking Reference
+              </span>
+              <span className="font-mono text-xs font-semibold text-[#111311] truncate block">
+                {confirmedLeadId}
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={handleCopyId}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-black/10 hover:border-black/20 text-xs font-medium text-[#111311] transition-all cursor-pointer shrink-0 active:scale-95 shadow-2xs hover:bg-neutral-50"
+            >
+              {isCopied ? (
+                <>
+                  <Check size={13} className="text-[#00BBA7]" />
+                  <span className="text-[#00BBA7] font-semibold">Copied</span>
+                </>
+              ) : (
+                <>
+                  <Copy size={13} className="text-[#6e766e]" />
+                  <span>Copy</span>
+                </>
+              )}
+            </button>
           </div>
         )}
 
-        <button
-          type="button"
-          onClick={() => setSubmitSuccess(false)}
-          className="inline-flex items-center gap-2 text-xs font-semibold text-[#013AFF] hover:underline cursor-pointer py-1.5"
-        >
-          <RotateCcw size={14} />
-          <span>Submit another inquiry</span>
-        </button>
+        {/* 3-Step Milestone Micro-Tracker */}
+        <div className="relative z-10 p-4 sm:p-5 rounded-2xl bg-neutral-50/60 border border-black/6 text-left max-w-md mx-auto space-y-3">
+          <span className="text-[11px] font-mono uppercase font-bold text-[#111311] tracking-wider block">
+            What Happens Next
+          </span>
+          <div className="space-y-2.5 text-xs text-[#4a524a]">
+            <div className="flex items-center gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-[#00BBA7] shrink-0" />
+              <span className="font-medium text-[#111311]">Encrypted Dispatch:</span>
+              <span className="text-[#6e766e]">Logged to Database & Verified</span>
+            </div>
+            <div className="flex items-center gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-[#013AFF] shrink-0 animate-pulse" />
+              <span className="font-medium text-[#111311]">Architect Assessment:</span>
+              <span className="text-[#6e766e]">Within 24 business hours</span>
+            </div>
+            <div className="flex items-center gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-neutral-300 shrink-0" />
+              <span className="font-medium text-[#111311]">Technical Scope:</span>
+              <span className="text-[#6e766e]">Discovery call & proposal</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Redesigned Interactive Action Bar */}
+        <div className="relative z-10 pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
+          <button
+            type="button"
+            onClick={() => {
+              setSubmitSuccess(false);
+              setConfirmedLeadId(null);
+            }}
+            className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 active:scale-[0.98] text-white text-xs font-semibold uppercase tracking-wider transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer group"
+          >
+            <RotateCcw
+              size={15}
+              className="group-hover:-rotate-90 transition-transform duration-300 text-[#00BBA7]"
+            />
+            <span>Submit Another Inquiry</span>
+          </button>
+
+          <a
+            href="#services"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-white hover:bg-neutral-50 active:scale-[0.98] border border-black/10 hover:border-black/20 text-xs font-semibold uppercase tracking-wider text-[#111311] transition-all duration-200 cursor-pointer shadow-2xs"
+          >
+            <span>Explore Services</span>
+            <ArrowRight size={14} className="text-[#013AFF]" />
+          </a>
+        </div>
       </div>
     );
   }
@@ -370,4 +465,3 @@ export default function ContactForm() {
     </form>
   );
 }
-
