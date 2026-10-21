@@ -66,7 +66,11 @@ export const leadFormSchema = z.object({
   // Honeypot field (hidden in UI)
   website_url_hp: z.string().optional().default(""),
   // Cloudflare Turnstile token
-  turnstileToken: z.string().optional().default(""),
+  turnstileToken: z
+    .string({
+      required_error: "Please complete the security verification challenge before submitting.",
+    })
+    .min(1, "Please complete the security verification challenge before submitting."),
 });
 
 export type LeadFormData = z.infer<typeof leadFormSchema>;

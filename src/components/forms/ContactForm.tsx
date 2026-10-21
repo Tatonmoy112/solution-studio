@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import {
   leadFormSchema,
   type LeadFormData,
@@ -38,6 +39,10 @@ export default function ContactForm() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [confirmedLeadId, setConfirmedLeadId] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
+  const [turnstileError, setTurnstileError] = useState<string | null>(null);
+
+  const turnstileRef = useRef<TurnstileInstance>(null);
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   const {
     register,
@@ -105,8 +110,15 @@ export default function ContactForm() {
   };
 
   const onSubmit = async (data: LeadFormData) => {
+    // 1. Enforce client-side Turnstile presence check
+    if (!data.turnstileToken || data.turnstileToken.trim().length === 0) {
+      setTurnstileError("Please complete the security verification challenge before submitting.");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitError(null);
+    setTurnstileError(null);
 
     // Client-side idempotency token
     const idempotencyKey = generateIdempotencyKey();
@@ -124,6 +136,9 @@ export default function ContactForm() {
       const result = await response.json();
 
       if (!response.ok || !result.success) {
+        // Reset turnstile token on failure to prevent token reuse
+        turnstileRef.current?.reset();
+        setValue("turnstileToken", "", { shouldValidate: true });
         throw new Error(
           result.error ||
             "Unable to submit inquiry at this moment. Please email us directly."
@@ -133,6 +148,7 @@ export default function ContactForm() {
       setSubmitSuccess(true);
       setConfirmedLeadId(result.leadId || idempotencyKey);
       reset();
+      turnstileRef.current?.reset();
     } catch (err: unknown) {
       const message =
         err instanceof Error ? err.message : "An unexpected error occurred.";
@@ -140,6 +156,11 @@ export default function ContactForm() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleSubmit(onSubmit)(e);
   };
 
   if (submitSuccess) {
@@ -235,6 +256,8 @@ export default function ContactForm() {
             onClick={() => {
               setSubmitSuccess(false);
               setConfirmedLeadId(null);
+              setTurnstileError(null);
+              turnstileRef.current?.reset();
             }}
             className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 active:scale-[0.98] text-white text-xs font-semibold uppercase tracking-wider transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer group"
           >
@@ -259,7 +282,7 @@ export default function ContactForm() {
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleFormSubmit}
       noValidate
       className="p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-white border border-black/10 shadow-xl space-y-5 sm:space-y-6"
     >
@@ -429,6 +452,52 @@ export default function ContactForm() {
         />
         {errors.message && (
           <p className="text-xs text-red-600 font-medium">{errors.message.message}</p>
+        )}
+      </div>
+
+      {/* Cloudflare Turnstile Verification Widget */}
+      <div className="space-y-2 py-1">
+        <div className="flex flex-col items-center sm:items-start min-h-[65px] justify-center">
+          {turnstileSiteKey ? (
+            <Turnstile
+              ref={turnstileRef}
+              siteKey={turnstileSiteKey}
+              options={{
+                theme: "light",
+                size: "flexible",
+                action: "submit_lead",
+              }}
+              onSuccess={(token) => {
+                setValue("turnstileToken", token, { shouldValidate: true });
+                setTurnstileError(null);
+              }}
+              onExpire={() => {
+                setValue("turnstileToken", "", { shouldValidate: true });
+                setTurnstileError("Verification challenge expired. Please verify again.");
+                turnstileRef.current?.reset();
+              }}
+              onError={() => {
+                setValue("turnstileToken", "", { shouldValidate: true });
+                setTurnstileError("Verification challenge failed. Please retry.");
+              }}
+              className="w-full max-w-full flex justify-center sm:justify-start"
+            />
+          ) : (
+            <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-800 text-xs w-full text-center">
+              Security verification configuration pending.
+            </div>
+          )}
+        </div>
+
+        {turnstileError && (
+          <p className="text-xs text-red-600 font-medium text-center sm:text-left">
+            {turnstileError}
+          </p>
+        )}
+        {errors.turnstileToken && !turnstileError && (
+          <p className="text-xs text-red-600 font-medium text-center sm:text-left">
+            {errors.turnstileToken.message}
+          </p>
         )}
       </div>
 

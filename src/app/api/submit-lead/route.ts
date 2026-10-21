@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { leadFormSchema } from "@/lib/validation/lead";
 import { createSupabaseAdminClient } from "@/lib/supabase/server";
+import { verifyTurnstileToken } from "@/lib/security/turnstile";
 import {
   generateLeadNotificationEmail,
   generateProspectConfirmationEmail,
@@ -11,12 +12,18 @@ const RATE_LIMIT_WINDOW_MINUTES = 15;
 const RATE_LIMIT_MAX_SUBMISSIONS = 4;
 const IP_SALT = process.env.CRON_SECRET || "solution-studio-default-salt-2026";
 
-function getClientIpHash(request: NextRequest): string {
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  const rawIp = forwardedFor
-    ? forwardedFor.split(",")[0].trim()
-    : request.headers.get("x-real-ip") || "unknown";
+function getClientIp(request: NextRequest): string {
+  const cfConnectingIp = request.headers.get("cf-connecting-ip");
+  if (cfConnectingIp) return cfConnectingIp.trim();
 
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  if (forwardedFor) return forwardedFor.split(",")[0].trim();
+
+  return request.headers.get("x-real-ip") || "127.0.0.1";
+}
+
+function getClientIpHash(request: NextRequest): string {
+  const rawIp = getClientIp(request);
   return crypto
     .createHash("sha256")
     .update(`${rawIp}:${IP_SALT}`)
@@ -35,7 +42,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // 1. Zod Validation
+  // 1. Zod Input Validation
   const validation = leadFormSchema.safeParse(body);
   if (!validation.success) {
     return NextResponse.json(
@@ -58,6 +65,7 @@ export async function POST(request: NextRequest) {
     timeline,
     message,
     website_url_hp,
+    turnstileToken,
   } = validation.data;
 
   // 2. Honeypot check - silently discard bot automated payloads
@@ -68,6 +76,7 @@ export async function POST(request: NextRequest) {
     });
   }
 
+  const clientIp = getClientIp(request);
   const ipHash = getClientIpHash(request);
   const idempotencyHeader = request.headers.get("X-Idempotency-Key");
   const idempotencyKey =
@@ -77,7 +86,26 @@ export async function POST(request: NextRequest) {
       .update(`${email}:${Date.now()}`)
       .digest("hex");
 
-  // 3. Database Persistence & Rate Limiting via Supabase
+  // 3. Cloudflare Turnstile Server-Side Verification (Fail-Closed)
+  // Must execute and pass BEFORE any database row creation or email dispatch.
+  const turnstileResult = await verifyTurnstileToken({
+    token: turnstileToken,
+    remoteIp: clientIp,
+    expectedAction: "submit_lead",
+    idempotencyKey,
+  });
+
+  if (!turnstileResult.success) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: turnstileResult.error || "Security verification failed.",
+      },
+      { status: turnstileResult.status }
+    );
+  }
+
+  // 4. Database Persistence & Rate Limiting via Supabase
   let leadId = idempotencyKey;
   let supabaseAvailable = false;
 
@@ -85,7 +113,7 @@ export async function POST(request: NextRequest) {
     const supabase = createSupabaseAdminClient();
     supabaseAvailable = true;
 
-    // Check rate limit
+    // Check rate limit by hashed IP within the window
     const windowStart = new Date(
       Date.now() - RATE_LIMIT_WINDOW_MINUTES * 60 * 1000
     ).toISOString();
@@ -109,7 +137,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Insert lead into Supabase
+    // Insert lead into Supabase with verified server status
     const { data: insertedData, error: insertError } = await supabase
       .from("leads")
       .insert({
@@ -123,13 +151,14 @@ export async function POST(request: NextRequest) {
         message,
         ip_hash: ipHash,
         idempotency_key: idempotencyKey,
+        turnstile_verified: true, // Authenticated via Cloudflare Turnstile Siteverify
         notification_status: "pending",
       })
       .select("id")
       .single();
 
     if (insertError) {
-      // Check if duplicate idempotency key
+      // Check if duplicate idempotency key (prevent duplicate lead insertion)
       if (insertError.code === "23505") {
         return NextResponse.json({
           success: true,
@@ -145,7 +174,7 @@ export async function POST(request: NextRequest) {
     console.warn("Supabase client unavailable (missing environment vars):", dbError);
   }
 
-  // 4. Dispatch Email Notifications via Resend (with fail-safe fallback to personal inbox)
+  // 5. Dispatch Email Notifications via Resend (with fail-safe fallback to personal inbox)
   const resendApiKey = process.env.RESEND_API_KEY;
   const fallbackEmail = "tatonmoy112@gmail.com";
   const targetEmail = process.env.LEAD_NOTIFICATION_EMAIL || fallbackEmail;
@@ -196,7 +225,7 @@ export async function POST(request: NextRequest) {
             Authorization: `Bearer ${resendApiKey}`,
           },
           body: JSON.stringify({
-            from: "Solution Studio <onboarding@resend.dev>",
+            from: "Solution Studio <sales@solutionstudio.bd>",
             to: fallbackEmail,
             subject: emailPayload.subject,
             html: emailPayload.html,
@@ -247,7 +276,7 @@ export async function POST(request: NextRequest) {
     console.warn("Skipping email dispatch: RESEND_API_KEY environment variable missing.");
   }
 
-  // 5. Update Notification Status in Supabase for auditability
+  // 6. Update Notification Status in Supabase for auditability
   if (supabaseAvailable) {
     try {
       const supabase = createSupabaseAdminClient();
