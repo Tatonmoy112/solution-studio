@@ -69,3 +69,10 @@ temp/
 *.key
 *.p12
 *.pfx
+
+# Local reference codebase (v1)
+solution-studio (v1)/
+
+# Supabase CLI temp files
+supabase/.temp/
+.temp/
