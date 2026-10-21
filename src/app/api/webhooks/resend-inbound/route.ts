@@ -1,4 +1,53 @@
 import { NextRequest, NextResponse } from "next/server";
+import crypto from "crypto";
+
+function verifySvixSignature(rawBody: string, headers: Headers, secret: string): boolean {
+  try {
+    const svixId = headers.get("svix-id");
+    const svixTimestamp = headers.get("svix-timestamp");
+    const svixSignature = headers.get("svix-signature");
+
+    if (!svixId || !svixTimestamp || !svixSignature) {
+      return false;
+    }
+
+    // Verify timestamp within 5-minute tolerance to prevent replay attacks
+    const timestampSec = parseInt(svixTimestamp, 10);
+    const nowSec = Math.floor(Date.now() / 1000);
+    if (Math.abs(nowSec - timestampSec) > 300) {
+      return false;
+    }
+
+    const cleanSecret = secret.replace(/^whsec_/, "");
+    const secretBuffer = Buffer.from(cleanSecret, "base64");
+    const signedContent = `${svixId}.${svixTimestamp}.${rawBody}`;
+
+    const computedSig = crypto
+      .createHmac("sha256", secretBuffer)
+      .update(signedContent)
+      .digest("base64");
+
+    const passedSignatures = svixSignature
+      .split(" ")
+      .map((part) => {
+        const commaIndex = part.indexOf(",");
+        return commaIndex !== -1 ? part.slice(commaIndex + 1) : part;
+      });
+
+    return passedSignatures.some((sig) => {
+      try {
+        const sigBuf = Buffer.from(sig);
+        const compBuf = Buffer.from(computedSig);
+        return sigBuf.length === compBuf.length && crypto.timingSafeEqual(sigBuf, compBuf);
+      } catch {
+        return false;
+      }
+    });
+  } catch (err) {
+    console.warn("Signature verification exception:", err);
+    return false;
+  }
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -8,7 +57,19 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: "API key not configured" }, { status: 200 });
     }
 
-    const event = await request.json();
+    const rawBody = await request.text();
+    const webhookSecret = process.env.RESEND_WEBHOOK_SECRET;
+
+    // Verify cryptographic signature if secret is configured in Vercel
+    if (webhookSecret) {
+      const isValid = verifySvixSignature(rawBody, request.headers, webhookSecret);
+      if (!isValid) {
+        console.warn("Resend webhook rejected: Invalid signature.");
+        return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
+      }
+    }
+
+    const event = JSON.parse(rawBody);
 
     // Verify it is an email.received event
     if (event.type !== "email.received" || !event.data) {
@@ -95,4 +156,3 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: errorMsg }, { status: 500 });
   }
 }
-
