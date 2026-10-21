@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
     const emailId = event.data.email_id || event.data.id;
     const clientFrom = event.data.from || "Unknown Client";
     const subject = event.data.subject || "No Subject";
-    const targetEmail = process.env.LEAD_NOTIFICATION_EMAIL || "tatonmoy112@gmail.com";
+    const targetEmail = process.env.LEAD_NOTIFICATION_EMAIL || "sales@solutionstudio.bd";
 
     console.log(`Processing inbound email ${emailId} from: ${clientFrom}`);
 

@@ -176,7 +176,7 @@ export async function POST(request: NextRequest) {
 
   // 5. Dispatch Email Notifications via Resend (with fail-safe fallback to personal inbox)
   const resendApiKey = process.env.RESEND_API_KEY;
-  const fallbackEmail = "tatonmoy112@gmail.com";
+  const fallbackEmail = "sales@solutionstudio.bd";
   const targetEmail = process.env.LEAD_NOTIFICATION_EMAIL || fallbackEmail;
   const leadNotificationFrom =
     process.env.LEAD_NOTIFICATION_FROM ||

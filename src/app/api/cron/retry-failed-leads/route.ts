@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   const authHeader = request.headers.get("authorization");
   const cronSecret = process.env.CRON_SECRET;
 
-  if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
+  if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ message: "No failed leads requiring retry." });
     }
 
-    const fallbackEmail = "tatonmoy112@gmail.com";
+    const fallbackEmail = "sales@solutionstudio.bd";
     const targetEmail = process.env.LEAD_NOTIFICATION_EMAIL || fallbackEmail;
     const leadNotificationFrom =
       process.env.LEAD_NOTIFICATION_FROM ||
