@@ -313,7 +313,7 @@ export default function ContactForm() {
           <input
             id="name"
             type="text"
-            placeholder="e.g. Alex Henderson"
+            placeholder="Enter your name"
             className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border text-base sm:text-sm bg-neutral-50/50 text-[#111311] placeholder:text-[#889088] focus:outline-none focus:ring-2 focus:ring-[#013AFF]/30 transition-all ${
               errors.name ? "border-red-500 bg-red-50/20" : "border-black/10 focus:border-[#013AFF]"
             }`}
@@ -331,7 +331,7 @@ export default function ContactForm() {
           <input
             id="email"
             type="email"
-            placeholder="alex@company.com"
+            placeholder="Enter your email address"
             className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border text-base sm:text-sm bg-neutral-50/50 text-[#111311] placeholder:text-[#889088] focus:outline-none focus:ring-2 focus:ring-[#013AFF]/30 transition-all ${
               errors.email ? "border-red-500 bg-red-50/20" : "border-black/10 focus:border-[#013AFF]"
             }`}
@@ -352,7 +352,7 @@ export default function ContactForm() {
           <input
             id="companyName"
             type="text"
-            placeholder="Acme Corp"
+            placeholder="Enter your company name"
             className="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border border-black/10 text-base sm:text-sm bg-neutral-50/50 text-[#111311] placeholder:text-[#889088] focus:outline-none focus:border-[#013AFF] focus:ring-2 focus:ring-[#013AFF]/30 transition-all"
             {...register("companyName")}
           />
@@ -365,7 +365,7 @@ export default function ContactForm() {
           <input
             id="phone"
             type="tel"
-            placeholder="+1 555-0199 or +880..."
+            placeholder="Enter your phone or WhatsApp number"
             className="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border border-black/10 text-base sm:text-sm bg-neutral-50/50 text-[#111311] placeholder:text-[#889088] focus:outline-none focus:border-[#013AFF] focus:ring-2 focus:ring-[#013AFF]/30 transition-all"
             {...register("phone")}
           />
@@ -421,7 +421,7 @@ export default function ContactForm() {
         <textarea
           id="message"
           rows={4}
-          placeholder="Describe your domain, current operational challenges, and what kind of system you are looking to build..."
+          placeholder="Describe your project, key requirements, or business challenges..."
           className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border text-base sm:text-sm bg-neutral-50/50 text-[#111311] placeholder:text-[#889088] focus:outline-none focus:ring-2 focus:ring-[#013AFF]/30 transition-all resize-y ${
             errors.message ? "border-red-500 bg-red-50/20" : "border-black/10 focus:border-[#013AFF]"
           }`}
