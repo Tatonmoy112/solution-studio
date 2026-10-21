@@ -145,10 +145,10 @@ export async function POST(request: NextRequest) {
     console.warn("Supabase client unavailable (missing environment vars):", dbError);
   }
 
-  // 4. Dispatch Email Notifications via Resend
+  // 4. Dispatch Email Notifications via Resend (with fail-safe fallback to personal inbox)
   const resendApiKey = process.env.RESEND_API_KEY;
-  const leadNotificationEmail =
-    process.env.LEAD_NOTIFICATION_EMAIL || "contact@solutionstudio.bd";
+  const fallbackEmail = "tatonmoy112@gmail.com";
+  const targetEmail = process.env.LEAD_NOTIFICATION_EMAIL || fallbackEmail;
   const leadNotificationFrom =
     process.env.LEAD_NOTIFICATION_FROM ||
     "Solution Studio <onboarding@resend.dev>";
@@ -172,7 +172,7 @@ export async function POST(request: NextRequest) {
         leadId,
       });
 
-      const resendRes = await fetch("https://api.resend.com/emails", {
+      let resendRes = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -180,11 +180,29 @@ export async function POST(request: NextRequest) {
         },
         body: JSON.stringify({
           from: leadNotificationFrom,
-          to: leadNotificationEmail,
+          to: targetEmail,
           subject: emailPayload.subject,
           html: emailPayload.html,
         }),
       });
+
+      // If initial dispatch failed (e.g. custom domain unverified in Resend), fallback to personal inbox
+      if (!resendRes.ok && targetEmail !== fallbackEmail) {
+        console.warn(`Resend dispatch to ${targetEmail} failed. Retrying dispatch to verified personal inbox ${fallbackEmail}`);
+        resendRes = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${resendApiKey}`,
+          },
+          body: JSON.stringify({
+            from: "Solution Studio <onboarding@resend.dev>",
+            to: fallbackEmail,
+            subject: emailPayload.subject,
+            html: emailPayload.html,
+          }),
+        });
+      }
 
       if (resendRes.ok) {
         const resendData = await resendRes.json();
@@ -251,4 +269,3 @@ export async function POST(request: NextRequest) {
     message: "Inquiry successfully processed.",
   });
 }
-

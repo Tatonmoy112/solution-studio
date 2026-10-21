@@ -8,14 +8,12 @@ import MicrosoftClarity from "@/components/analytics/MicrosoftClarity";
 const fontSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
 const fontMono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -132,4 +130,3 @@ export default function RootLayout({
     </html>
   );
 }
-

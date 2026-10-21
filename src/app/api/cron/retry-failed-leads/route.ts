@@ -42,8 +42,8 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ message: "No failed leads requiring retry." });
     }
 
-    const leadNotificationEmail =
-      process.env.LEAD_NOTIFICATION_EMAIL || "contact@solutionstudio.bd";
+    const fallbackEmail = "tatonmoy112@gmail.com";
+    const targetEmail = process.env.LEAD_NOTIFICATION_EMAIL || fallbackEmail;
     const leadNotificationFrom =
       process.env.LEAD_NOTIFICATION_FROM ||
       "Solution Studio <onboarding@resend.dev>";
@@ -65,7 +65,7 @@ export async function GET(request: NextRequest) {
           leadId: lead.id,
         });
 
-        const resendRes = await fetch("https://api.resend.com/emails", {
+        let resendRes = await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -73,11 +73,27 @@ export async function GET(request: NextRequest) {
           },
           body: JSON.stringify({
             from: leadNotificationFrom,
-            to: leadNotificationEmail,
+            to: targetEmail,
             subject: `[RETRY SUCCESS] ${emailPayload.subject}`,
             html: emailPayload.html,
           }),
         });
+
+        if (!resendRes.ok && targetEmail !== fallbackEmail) {
+          resendRes = await fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${resendApiKey}`,
+            },
+            body: JSON.stringify({
+              from: "Solution Studio <onboarding@resend.dev>",
+              to: fallbackEmail,
+              subject: `[RETRY SUCCESS] ${emailPayload.subject}`,
+              html: emailPayload.html,
+            }),
+          });
+        }
 
         if (resendRes.ok) {
           const resendData = await resendRes.json();
@@ -93,20 +109,29 @@ export async function GET(request: NextRequest) {
             .eq("id", lead.id);
 
           recoveredCount++;
+        } else {
+          const errText = await resendRes.text();
+          await supabase
+            .from("leads")
+            .update({
+              notification_error: `Retry failed: ${errText}`,
+              updated_at: new Date().toISOString(),
+            })
+            .eq("id", lead.id);
         }
-      } catch (retryErr) {
-        console.error(`Retry failed for lead ${lead.id}:`, retryErr);
+      } catch (leadError) {
+        console.error(`Error retrying lead ${lead.id}:`, leadError);
       }
     }
 
     return NextResponse.json({
       success: true,
-      totalFailedFound: failedLeads.length,
+      message: `Recovered and dispatched ${recoveredCount} of ${failedLeads.length} failed leads.`,
       recoveredCount,
+      totalFailed: failedLeads.length,
     });
   } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : "Internal error";
+    const message = err instanceof Error ? err.message : "Internal server error";
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
-
